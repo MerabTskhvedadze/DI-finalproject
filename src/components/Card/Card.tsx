@@ -6,7 +6,7 @@ type CardProps = {
 
 export const Card = ({ title, img, link }: CardProps) => {
   return (
-    <div className='h-[420px] bg-white z-30 m-3'>
+    <div className='h-[420px] bg-white z-30 m-3 '>
       <div className='text-lg xl:text-xl font-semibold ml-4 mt-4'>{title}</div>
       <div className='h-[300px] m-4'>
         <img src={img} className='h-full w-full object-cover' />
