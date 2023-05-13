@@ -1,7 +1,7 @@
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { Search } from './Search';
 
-import amazonImg from '@/assets/images/amazon.png';
+import amazonImg from 'assets/images/amazon.png';
 
 export const Navigation = () => {
   return (
