@@ -1,18 +1,17 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper';
 
-import carouselImg1 from '@/assets/images/carousel_1.jpg';
-import carouselImg2 from '@/assets/images/carousel_2.jpg';
-import carouselImg4 from '@/assets/images/carousel_4.jpg';
-import carouselImg5 from '@/assets/images/carousel_5.jpg';
-import carouselVideo from '@/assets/images/carousel_vid.mp4';
+import carouselImg1 from 'assets/images/carousel_1.jpg';
+import carouselImg2 from 'assets/images/carousel_2.jpg';
+import carouselImg4 from 'assets/images/carousel_4.jpg';
+import carouselImg5 from 'assets/images/carousel_5.jpg';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-export const Carousel = () => {
+export const MainCarousel = () => {
   return (
-    <div className='h-[600px] bg-white'>
+    <div className='h-[600px]'>
       <Swiper
         loop={true}
         spaceBetween={0}
@@ -28,11 +27,6 @@ export const Carousel = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img src={carouselImg2} />
-        </SwiperSlide>
-        <SwiperSlide className='bg-black'>
-          <video controls muted={true}>
-            <source src={carouselVideo} type='video/mp4' />
-          </video>
         </SwiperSlide>
         <SwiperSlide>
           <img src={carouselImg4} />
