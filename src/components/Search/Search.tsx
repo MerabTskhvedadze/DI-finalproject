@@ -5,7 +5,7 @@ export const Search = () => {
     <div className='w-full'>
       <div className='flex items-center h-10 bg-amazon-yellow rounded'>
         <input
-          className='grow flex items-center h-full rounded-l text-black'
+          className='px-[10px] grow flex items-center h-full rounded-l text-black'
           type='text'
         />
         <button className='w-[45px]'>

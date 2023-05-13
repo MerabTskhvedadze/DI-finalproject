@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 type CardProps = {
   title: string;
   link: string;
@@ -11,7 +13,9 @@ export const Card = ({ title, img, link }: CardProps) => {
       <div className='h-[300px] m-4'>
         <img src={img} className='h-full w-full object-cover' />
       </div>
-      <div className='text-xs xl:text-sm text-blue-400 ml-4'>{link}</div>
+      <Link to={`${link}`} className='text-xs xl:text-sm text-blue-400 ml-4'>
+        {link}
+      </Link>
     </div>
   );
 };
