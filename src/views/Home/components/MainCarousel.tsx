@@ -1,10 +1,11 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper';
 
-import carouselImg1 from 'assets/images/carousel_1.jpg';
-import carouselImg2 from 'assets/images/carousel_2.jpg';
-import carouselImg4 from 'assets/images/carousel_4.jpg';
-import carouselImg5 from 'assets/images/carousel_5.jpg';
+import bannerImgOne from 'assets/images/bannerImgOne.jpg';
+import bannerImgTwo from 'assets/images/bannerImgTwo.jpg';
+import bannerImgThree from 'assets/images/bannerImgThree.jpg';
+import bannerImgFour from 'assets/images/bannerImgFour.jpg';
+import bannerImgFive from 'assets/images/bannerImgFive.jpg';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -23,19 +24,21 @@ export const MainCarousel = () => {
         className='h-[58%]'
       >
         <SwiperSlide>
-          <img src={carouselImg1} />
+          <img src={bannerImgOne} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={carouselImg2} />
+          <img src={bannerImgTwo} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={carouselImg4} />
+          <img src={bannerImgThree} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={carouselImg5} />
+          <img src={bannerImgFour} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={bannerImgFive} />
         </SwiperSlide>
       </Swiper>
-      <div className='h-[50%] bg-gradient-to-b from-stone-900' />
     </div>
   );
 };
