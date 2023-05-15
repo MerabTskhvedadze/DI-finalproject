@@ -7,12 +7,6 @@ export const ContactForm = () => {
       onSubmit={() => console.log('submit')}
       className='space-y-8'
     >
-      <label
-        htmlFor='email'
-        className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-      >
-        Your email
-      </label>
       <input
         type='email'
         id='email'
@@ -20,12 +14,6 @@ export const ContactForm = () => {
         placeholder='name@amazonclone.com'
         required
       />
-      <label
-        htmlFor='message'
-        className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400'
-      >
-        Your message
-      </label>
       <textarea
         id='message'
         className='h-[150px] resize-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'

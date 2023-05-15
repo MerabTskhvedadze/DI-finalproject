@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { PublicLayout } from './layouts/PublicLayout';
+import { SideFeatureLayout } from 'layouts/SideFeatureLayout';
 
 const PageNotFound = lazy(() => import('./views/PageNotFound'));
 const Home = lazy(() => import('./views/Home'));
@@ -16,7 +17,9 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/product' element={<Product />} />
         </Route>
-        <Route path='/contact-us' element={<ContactUs />} />
+        <Route element={<SideFeatureLayout />}>
+          <Route path='/contact-us' element={<ContactUs />} />
+        </Route>
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </Suspense>
