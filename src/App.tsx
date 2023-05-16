@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { PublicLayout, SideFeatureLayout } from 'layouts';
+import { Loading } from 'views/Loading/Loading';
 
 const PageNotFound = lazy(() => import('views/PageNotFound'));
 const Home = lazy(() => import('views/Home'));
@@ -12,7 +13,7 @@ const Registration = lazy(() => import('views/Registeration'));
 
 function App() {
   return (
-    <Suspense fallback={<h1>Loading</h1>}>
+    <Suspense fallback={<Loading />}>
       <Routes>
         <Route element={<PublicLayout />}>
           <Route path='/' element={<Home />} />
