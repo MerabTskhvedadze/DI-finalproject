@@ -1,27 +1,43 @@
 import { Button } from 'components/Button';
 
+import { Form, Input } from 'antd';
+
 export const ContactForm = () => {
+  const onFinish = (values: any) => {
+    console.log('Form values:', values);
+  };
+
   return (
-    <form
-      action='/'
-      onSubmit={() => console.log('submit')}
-      className='space-y-8'
-    >
-      <input
-        type='email'
-        id='email'
-        className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light'
-        placeholder='name@amazonclone.com'
-        required
-      />
-      <textarea
-        id='message'
-        className='h-[150px] resize-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'
-        placeholder='Leave a comment...'
-      />
-      <Button color='blue' onClick={() => console.log('click')}>
-        Send message
-      </Button>
-    </form>
+    <Form name='contact-form' onFinish={onFinish}>
+      <Form.Item
+        name='name'
+        rules={[{ required: true, message: 'Please enter your name' }]}
+      >
+        <Input placeholder='Name' />
+      </Form.Item>
+
+      <Form.Item
+        name='email'
+        rules={[
+          { required: true, message: 'Please enter your email address' },
+          { type: 'email', message: 'Please enter a valid email address' },
+        ]}
+      >
+        <Input placeholder='Email' />
+      </Form.Item>
+
+      <Form.Item
+        name='message'
+        rules={[{ required: true, message: 'Please enter your message' }]}
+      >
+        <Input.TextArea placeholder='Message' />
+      </Form.Item>
+
+      <Form.Item>
+        <Button type='submit' color='yellow'>
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
