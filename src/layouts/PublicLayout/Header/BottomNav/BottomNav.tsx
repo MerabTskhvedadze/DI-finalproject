@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { LanguageDropdown } from 'components/LanguageDropdown';
+import { LanguageDropdown } from 'layouts/PublicLayout/components/LanguageDropdown';
 
 export const BottomNav = () => {
   return (
