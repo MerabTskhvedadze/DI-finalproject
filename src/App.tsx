@@ -1,12 +1,13 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { PublicLayout, SideFeatureLayout } from './layouts';
+import { PublicLayout, SideFeatureLayout } from 'layouts';
 
-const PageNotFound = lazy(() => import('./views/PageNotFound'));
-const Home = lazy(() => import('./views/Home'));
-const Product = lazy(() => import('./views/Product'));
-const ContactUs = lazy(() => import('./views/ContactUs'));
+const PageNotFound = lazy(() => import('views/PageNotFound'));
+const Home = lazy(() => import('views/Home'));
+const Product = lazy(() => import('views/Product'));
+const ContactUs = lazy(() => import('views/ContactUs'));
+const LogIn = lazy(() => import('views/LogIn'));
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         </Route>
         <Route element={<SideFeatureLayout />}>
           <Route path='/contact-us' element={<ContactUs />} />
+          <Route path='/login' element={<LogIn />} />
         </Route>
         <Route path='*' element={<PageNotFound />} />
       </Routes>
