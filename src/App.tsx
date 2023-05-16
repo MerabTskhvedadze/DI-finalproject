@@ -1,8 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { PublicLayout } from './layouts/PublicLayout';
-import { SideFeatureLayout } from 'layouts/SideFeatureLayout';
+import { PublicLayout, SideFeatureLayout } from './layouts';
 
 const PageNotFound = lazy(() => import('./views/PageNotFound'));
 const Home = lazy(() => import('./views/Home'));

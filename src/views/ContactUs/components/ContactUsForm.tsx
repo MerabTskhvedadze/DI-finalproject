@@ -5,13 +5,10 @@ import { Button } from 'components/Button';
 
 import { Form, Input } from 'antd';
 
-export const ContactForm = () => {
+export const ContactUsForm = () => {
   const { showModal } = useContext(ModalContext);
 
-  const onFinish = (values: any) => {
-    showModal();
-    console.log('Form values:', values);
-  };
+  const onFinish = () => showModal();
 
   return (
     <Form name='contact-form' onFinish={onFinish}>

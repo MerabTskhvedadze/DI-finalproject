@@ -51,7 +51,7 @@ export const Footer = () => {
           ))}
         </div>
         <div className='text-center mt-8 text-gray-600'>
-          &copy; 2023 Amazon.com. All rights reserved.
+          &copy; 2023 Amazon clone. All rights reserved.
         </div>
       </div>
     </footer>

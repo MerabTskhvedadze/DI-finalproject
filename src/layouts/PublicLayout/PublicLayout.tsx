@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { Container } from 'components/Container';
+import { Container } from './components/Container';
 
 export const PublicLayout = () => {
   return (

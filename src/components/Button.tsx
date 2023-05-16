@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 type ButtonProps = {
   to?: string;
-  type: 'submit' | 'button';
+  type?: 'submit' | 'button';
   onClick?: () => void;
   color?: 'yellow' | 'blue';
   className?: string;

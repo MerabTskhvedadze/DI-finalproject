@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
-import { Search } from 'components/Search';
+import { Search } from 'layouts/PublicLayout/components/Search';
 
 import amazonImg from 'assets/images/amazon.png';
 
