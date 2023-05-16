@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 type ButtonProps = {
   to?: string;
+  type: 'submit' | 'button';
   onClick?: () => void;
   color?: 'yellow' | 'blue';
   className?: string;
@@ -10,6 +11,7 @@ type ButtonProps = {
 
 export const Button = ({
   to,
+  type,
   onClick,
   color = 'yellow',
   className = '',
@@ -33,7 +35,7 @@ export const Button = ({
     );
   }
   return (
-    <button type='button' className={classes} onClick={onClick}>
+    <button type={type} className={classes} onClick={onClick}>
       {children}
     </button>
   );

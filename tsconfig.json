@@ -5,7 +5,9 @@
       "components/*": ["components/*"],
       "assets/*": ["assets/*"],
       "layouts/*": ["layouts/*"],
-      "views/*": ["views/*"]
+      "views/*": ["views/*"],
+      "context/*": ["context/*"],
+      "providers/*": ["providers/*"]
     },
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
