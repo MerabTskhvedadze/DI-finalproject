@@ -8,6 +8,7 @@ const Home = lazy(() => import('views/Home'));
 const Product = lazy(() => import('views/Product'));
 const ContactUs = lazy(() => import('views/ContactUs'));
 const LogIn = lazy(() => import('views/LogIn'));
+const Registration = lazy(() => import('views/Registeration'));
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route element={<SideFeatureLayout />}>
           <Route path='/contact-us' element={<ContactUs />} />
           <Route path='/login' element={<LogIn />} />
+          <Route path='/register' element={<Registration />} />
         </Route>
         <Route path='*' element={<PageNotFound />} />
       </Routes>
