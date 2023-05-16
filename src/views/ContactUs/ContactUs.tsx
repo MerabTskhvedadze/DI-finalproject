@@ -1,4 +1,5 @@
 import { ContactForm } from './components/ContactForm';
+import { ModalComponent } from 'components/ModalComponet';
 
 export default function ContactUs() {
   return (
@@ -11,6 +12,10 @@ export default function ContactUs() {
         assist you. Fill out the form below with your email and message, and
         we'll get back to you as soon as possible
       </p>
+      <ModalComponent
+        message='Thank you for reaching out! Your form has been successfully submitted. We will get back to you shortly.'
+        title='Form Submitted Successfully'
+      />
       <ContactForm />
     </div>
   );
