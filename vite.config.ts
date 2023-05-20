@@ -12,6 +12,7 @@ export default defineConfig({
       views: path.resolve(__dirname, 'src/views'),
       context: path.resolve(__dirname, 'src/context'),
       providers: path.resolve(__dirname, 'src/providers'),
+      hooks: path.resolve(__dirname, 'src/hooks'),
     },
   },
   plugins: [react()],

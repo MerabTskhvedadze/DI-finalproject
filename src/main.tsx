@@ -7,11 +7,17 @@ import { Providers } from 'providers/Providers';
 
 import './assets/styles/globalCss.css';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
     <React.StrictMode>
       <Providers>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </Providers>
     </React.StrictMode>
   </BrowserRouter>
