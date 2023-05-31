@@ -1,43 +1,63 @@
+import { UseMutateFunction } from 'react-query';
 import { Form, Input } from 'antd';
-import { ChangeEvent } from 'react';
-
 import { Button } from 'components/Button';
+import { FormValues } from '../types/FormValues';
 
-export const RegistrationForm = () => {
-  const onFinish = (values: ChangeEvent) => {
-    console.log('Received values:', values);
-  };
+type RegistrationFormProps = {
+  registerUser: UseMutateFunction<void, any, FormValues, unknown>;
+};
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+export const RegistrationForm = ({ registerUser }: RegistrationFormProps) => {
+  const onFinish = (values: FormValues) => {
+    registerUser(values);
   };
 
   return (
-    <Form
-      name='registrationForm'
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
+    <Form name='registrationForm' onFinish={onFinish}>
       <Form.Item
-        label='Name'
-        name='name'
+        label='Firstname'
+        name='firstName'
         rules={[
           {
             required: true,
-            message: 'Please enter your name!',
+            message: 'Please enter your firstname!',
           },
         ]}
       >
         <Input />
       </Form.Item>
-
       <Form.Item
-        label='Email Address'
+        label='Lastname'
+        name='lastName'
+        rules={[
+          {
+            required: true,
+            message: 'Please enter your lastname!',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label='Phone Number'
+        name='phoneNumber'
+        rules={[
+          { required: true, message: 'Please enter your phone number' },
+          {
+            pattern: /^\+(?:[0-9]?){6,14}[0-9]$/,
+            message: 'Please enter a valid phone number',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label='Email'
         name='email'
         rules={[
           {
             required: true,
-            message: 'Please enter your email address!',
+            message: 'Please enter your email!',
           },
           {
             type: 'email',
@@ -47,7 +67,6 @@ export const RegistrationForm = () => {
       >
         <Input />
       </Form.Item>
-
       <Form.Item
         label='Password'
         name='password'
@@ -64,7 +83,6 @@ export const RegistrationForm = () => {
       >
         <Input.Password />
       </Form.Item>
-
       <Form.Item>
         <Button color='yellow' type='submit'>
           Register
