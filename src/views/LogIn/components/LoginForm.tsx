@@ -1,22 +1,22 @@
 import { Form, Input } from 'antd';
 import { Button } from 'components/Button';
-import { ChangeEvent } from 'react';
+import { UseMutateFunction } from 'react-query';
+import { FormValues } from '../types/FormValues';
+import { responseData } from '../types/responseData';
 
-export default function LoginForm() {
-  const onFinish = (values: ChangeEvent) => {
-    console.log('Received values:', values);
+type LoginFormProps = {
+  loginUser: UseMutateFunction<responseData, any, FormValues, unknown>;
+};
+
+export default function LoginForm({ loginUser }: LoginFormProps) {
+  const onFinish = (values: FormValues) => {
+    loginUser(values);
   };
 
   return (
-    <Form
-      name='loginForm'
-      onFinish={onFinish}
-      initialValues={{
-        remember: true,
-      }}
-    >
+    <Form name='loginForm' onFinish={onFinish}>
       <Form.Item
-        label='Email Address'
+        label='Email'
         name='email'
         rules={[
           { required: true, message: 'Please enter your email address' },
@@ -25,7 +25,6 @@ export default function LoginForm() {
       >
         <Input />
       </Form.Item>
-
       <Form.Item
         label='Password'
         name='password'
@@ -38,7 +37,6 @@ export default function LoginForm() {
       >
         <Input.Password />
       </Form.Item>
-
       <Form.Item>
         <Button type='submit' color='yellow'>
           Log in
