@@ -21,8 +21,7 @@
     "react-router-dom": "^6.11.0",
     "styled-components": "^6.0.0-rc.1",
     "swiper": "^9.2.4",
-    "tailwindcss": "^3.3.2",
-    "usehooks-ts": "^2.9.1"
+    "tailwindcss": "^3.3.2"
   },
   "devDependencies": {
     "@types/node": "^18.16.3",

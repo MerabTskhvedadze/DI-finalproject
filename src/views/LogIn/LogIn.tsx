@@ -1,20 +1,19 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLocalStorage } from 'usehooks-ts';
 import { useMutation } from 'react-query';
 import { public_axios } from 'utils/public_axios';
+import { TLocalStorage } from 'types/localstorage';
+import { AuthContext, TAuthorizationStage } from 'context/AuthContext';
 
 import { responseData } from './types/responseData';
 import { FormValues } from './types/FormValues';
 
 import { message } from 'antd';
-import LoginForm from './components/LoginForm';
+import { LoginForm } from './components/LoginForm';
 
 export default function LogIn() {
-  const [_, setAccessToken] = useLocalStorage<string | null>(
-    'accessToken',
-    null
-  );
   const navigate = useNavigate();
+  const { setStatus } = useContext(AuthContext);
 
   const loginUser = async (values: FormValues) => {
     const response = await public_axios.post('/login', values);
@@ -23,8 +22,11 @@ export default function LogIn() {
 
   const { mutate } = useMutation(loginUser, {
     onSuccess: (data: responseData) => {
-      message.success(`Wellcome back ${data.User.firstName}`);
-      setAccessToken(data.AccessToken);
+      if (data.AccessToken) {
+        localStorage.setItem(TLocalStorage.ACCESSTOKEN, data.AccessToken);
+        setStatus(TAuthorizationStage.AUTHORIZED);
+      }
+      message.success(`Wellcome back`);
       navigate('/');
     },
     onError: (error: any) => {

@@ -8,7 +8,8 @@
       "views/*": ["views/*"],
       "context/*": ["context/*"],
       "providers/*": ["providers/*"],
-      "utils/*": ["utils/*"]
+      "utils/*": ["utils/*"],
+      "types/*": ["types/*"]
     },
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

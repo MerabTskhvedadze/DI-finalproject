@@ -1,6 +1,11 @@
-import { ModalProvider } from './ModalProvider/ModalProvider';
+import { ModalProvider } from './ModalProvider';
+import { AuthProvider } from './AuthProvider';
 import { PropsWithChildren } from 'react';
 
 export const Providers = ({ children }: PropsWithChildren) => {
-  return <ModalProvider>{children}</ModalProvider>;
+  return (
+    <ModalProvider>
+      <AuthProvider>{children}</AuthProvider>
+    </ModalProvider>
+  );
 };

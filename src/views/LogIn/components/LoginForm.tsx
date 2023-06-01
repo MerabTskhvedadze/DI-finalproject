@@ -8,7 +8,7 @@ type LoginFormProps = {
   loginUser: UseMutateFunction<responseData, any, FormValues, unknown>;
 };
 
-export default function LoginForm({ loginUser }: LoginFormProps) {
+export const LoginForm = ({ loginUser }: LoginFormProps) => {
   const onFinish = (values: FormValues) => {
     loginUser(values);
   };
@@ -44,4 +44,4 @@ export default function LoginForm({ loginUser }: LoginFormProps) {
       </Form.Item>
     </Form>
   );
-}
+};

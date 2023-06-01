@@ -1,5 +1,5 @@
 import { useState, PropsWithChildren } from 'react';
-import { ModalContext } from 'context';
+import { ModalContext } from 'context/ModalContext';
 
 export const ModalProvider = ({ children }: PropsWithChildren) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
