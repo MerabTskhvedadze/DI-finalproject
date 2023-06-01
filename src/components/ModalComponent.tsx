@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ModalContext } from 'context';
+import { ModalContext } from 'context/ModalContext';
 
 import { Modal } from 'antd';
 
