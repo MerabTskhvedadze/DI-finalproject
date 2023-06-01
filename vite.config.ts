@@ -14,6 +14,7 @@ export default defineConfig({
       providers: path.resolve(__dirname, 'src/providers'),
       hooks: path.resolve(__dirname, 'src/hooks'),
       utils: path.resolve(__dirname, 'src/utils'),
+      types: path.resolve(__dirname, 'src/types'),
     },
   },
   plugins: [react()],
