@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { PublicLayout, SideFeatureLayout } from 'layouts';
-import { Loading } from 'views/Loading/Loading';
+import { Loading } from 'views/Loading';
 
 const PageNotFound = lazy(() => import('views/PageNotFound'));
 const Home = lazy(() => import('views/Home'));

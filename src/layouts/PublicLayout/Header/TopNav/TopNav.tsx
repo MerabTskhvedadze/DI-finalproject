@@ -6,7 +6,7 @@ import amazonImg from 'assets/images/amazon.png';
 
 export const TopNav = () => {
   return (
-    <div className='flex bg-amazon text-white h-[60px]'>
+    <div className='flex items-center bg-amazon text-white h-[60px]'>
       <Link to={'/'}>
         <img src={amazonImg} className='h-[35px] w-[100px] my-3 mx-4' />
       </Link>
