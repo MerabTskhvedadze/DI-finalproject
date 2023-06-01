@@ -1,2 +1,2 @@
-export { PublicLayout } from './PublicLayout/PublicLayout';
+export { MainLayout } from './MainLayout/MainLayout';
 export { SideFeatureLayout } from './SideFeatureLayout/SideFeatureLayout';
