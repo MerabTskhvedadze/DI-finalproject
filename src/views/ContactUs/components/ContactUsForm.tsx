@@ -37,7 +37,7 @@ export const ContactUsForm = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button type='submit' color='yellow'>
+        <Button type='submit' isTextButton={false}>
           Submit
         </Button>
       </Form.Item>

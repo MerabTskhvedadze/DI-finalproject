@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { PublicLayout, SideFeatureLayout } from 'layouts';
+import { MainLayout, SideFeatureLayout } from 'layouts';
 import { Loading } from 'views/Loading';
 
 const PageNotFound = lazy(() => import('views/PageNotFound'));
@@ -15,7 +15,7 @@ function App() {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
-        <Route element={<PublicLayout />}>
+        <Route element={<MainLayout />}>
           <Route path='/' element={<Home />} />
           <Route path='/product' element={<Product />} />
         </Route>

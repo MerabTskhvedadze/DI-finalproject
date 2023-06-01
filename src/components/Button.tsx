@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 type ButtonProps = {
   to?: string;
+  isTextButton: boolean;
   type?: 'submit' | 'button';
   onClick?: () => void;
-  color?: 'yellow' | 'blue';
   className?: string;
   children: React.ReactNode;
 };
@@ -13,19 +13,10 @@ export const Button = ({
   to,
   type,
   onClick,
-  color = 'yellow',
   className = '',
   children,
 }: ButtonProps) => {
-  const defaultClasses =
-    'flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2';
-
-  const colorClasses =
-    color === 'yellow'
-      ? 'text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500'
-      : 'text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500';
-
-  const classes = `${defaultClasses} ${colorClasses} ${className}`;
+  const classes = `${className} text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-500 flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2`;
 
   if (to) {
     return (
@@ -34,6 +25,7 @@ export const Button = ({
       </Link>
     );
   }
+
   return (
     <button type={type} className={classes} onClick={onClick}>
       {children}
