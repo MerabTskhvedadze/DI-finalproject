@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 
 type ButtonProps = {
   to?: string;
-  isTextButton: boolean;
   type?: 'submit' | 'button';
   onClick?: () => void;
   className?: string;

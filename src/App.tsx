@@ -10,6 +10,7 @@ const Product = lazy(() => import('views/Product'));
 const ContactUs = lazy(() => import('views/ContactUs'));
 const LogIn = lazy(() => import('views/LogIn'));
 const Registration = lazy(() => import('views/Registeration'));
+const Settings = lazy(() => import('views/Settings'));
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='/login' element={<LogIn />} />
           <Route path='/register' element={<Registration />} />
         </Route>
+        <Route path='/settings' element={<Settings />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </Suspense>

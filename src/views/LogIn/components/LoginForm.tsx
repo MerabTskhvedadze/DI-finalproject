@@ -38,9 +38,7 @@ export const LoginForm = ({ loginUser }: LoginFormProps) => {
         <Input.Password />
       </Form.Item>
       <Form.Item>
-        <Button type='submit' color='yellow'>
-          Log in
-        </Button>
+        <Button type='submit'>Log in</Button>
       </Form.Item>
     </Form>
   );
