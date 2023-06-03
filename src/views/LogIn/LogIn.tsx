@@ -29,8 +29,8 @@ export default function LogIn() {
       message.success(`Wellcome back`);
       navigate('/');
     },
-    onError: (error: any) => {
-      message.error(error.response.data);
+    onError: () => {
+      message.error('Email or Password is not correct');
     },
   });
 
