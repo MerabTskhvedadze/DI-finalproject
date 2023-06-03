@@ -9,7 +9,6 @@ import { Auth } from './components/Auth';
 import { Greeting } from './components/Greeting';
 
 import amazonImg from 'assets/images/amazon.png';
-import { useUserData } from 'hooks/useUserData';
 
 export const TopNav = () => {
   const { status, setStatus } = useContext(AuthContext);
@@ -19,16 +18,13 @@ export const TopNav = () => {
     setStatus(TAuthorizationStage.UNAUTHORIZED);
   };
 
-  const { data } = useUserData();
-  console.log(data);
-
   return (
     <nav className='flex items-center bg-amazon text-white h-[60px]'>
       <Link to={'/'}>
         <img src={amazonImg} className='h-[35px] w-[100px] my-3 mx-4' />
       </Link>
       <Greeting />
-      <div className='flex grow relative items-center'>
+      <div className='flex grow relative items-center px-10'>
         <Search />
       </div>
       <div className='flex items-center m-4'>
