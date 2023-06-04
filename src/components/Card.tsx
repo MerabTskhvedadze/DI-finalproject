@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 type CardProps = {
   title: string;
-  link: string;
   img: string;
+  link: number;
 };
 
 export const Card = ({ title, img, link }: CardProps) => {
@@ -13,8 +13,11 @@ export const Card = ({ title, img, link }: CardProps) => {
       <div className='h-[300px] m-4'>
         <img src={img} className='h-full w-full object-cover' />
       </div>
-      <Link to={`${link}`} className='text-xs xl:text-sm text-blue-400 ml-4'>
-        {link}
+      <Link
+        to={`product/${link}`}
+        className='text-xs xl:text-sm text-blue-400 ml-4'
+      >
+        See more
       </Link>
     </div>
   );
