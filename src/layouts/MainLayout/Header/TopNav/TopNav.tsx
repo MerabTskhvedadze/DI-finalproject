@@ -6,7 +6,6 @@ import { AuthContext, TAuthorizationStage } from 'context/AuthContext';
 import { TLocalStorage } from 'types/localstorage';
 import { Search } from './components/Search';
 import { Auth } from './components/Auth';
-import { Greeting } from './components/Greeting';
 
 import amazonImg from 'assets/images/amazon.png';
 
@@ -23,7 +22,6 @@ export const TopNav = () => {
       <Link to={'/'}>
         <img src={amazonImg} className='h-[35px] w-[100px] my-3 mx-4' />
       </Link>
-      <Greeting />
       <div className='flex grow relative items-center px-10'>
         <Search />
       </div>
