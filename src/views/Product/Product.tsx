@@ -13,34 +13,39 @@ export default function Product() {
 
   return (
     <div className='h-screen'>
-      <div className='min-w-[1000px] max-w-[1500px] m-auto bg-orange-400 py-10'>
-        <div className='grid grid-cols-10 gap-2'>
-          <div className='col-span-5 rounded bg-white m-auto'>
-            <img src={data?.images[0]} />
+      <div className='grid grid-cols-5 gap-2 p-4'>
+        <div className='col-span-5 rounded bg-white m-auto py-4 px-10'>
+          <div className='w-full'>
+            <img className='m-auto h-[400px]' src={data?.images[0]} />
           </div>
-          <div className='col-span-3 p-4 bg-white divide-y divide-gray-400'>
-            <div className='mb-3'>
-              <div className='text-xl xl:text-2xl font-medium mb-1'>
-                {data?.title}
-              </div>
-              <div className='text-sm xl:text-base mb-1'>
-                by <span className='text-blue-500'>{data?.brand}</span>
-              </div>
-              <div className='text-sm xl:text-base mb-1 text-blue-500'>
-                <Rate disabled defaultValue={data?.rating} /> rating
-              </div>
-            </div>
-            <div className='text-base xl:text-lg mt-3'>{data?.description}</div>
+          <div className='flex flex-wrap justify-between p-5 gap-2 '>
+            {data?.images.map((image: string) => (
+              <img className='h-[90px]' src={image} />
+            ))}
           </div>
-          <div className='col-span-2 p-4 rounded bg-white'>
-            <div className='text-xl xl:text-2xl font-semibold text-red-500 text-right'>
-              ${data?.price}
+        </div>
+        <div className='col-span-3 p-4 bg-white divide-y divide-gray-400'>
+          <div className='mb-3'>
+            <div className='text-xl xl:text-2xl font-medium mb-1'>
+              {data?.title}
             </div>
-            <div className='text-sm xl:text-base mb-1 text-green-800 mt-3'>
-              In stock: {data?.stock}
+            <div className='text-sm xl:text-base mb-1'>
+              by <span className='text-blue-500'>{data?.brand}</span>
             </div>
-            <Button className='w-full mt-3'>Add to cart</Button>
+            <div className='text-sm xl:text-base mb-1 text-blue-500'>
+              <Rate disabled defaultValue={data?.rating} /> rating
+            </div>
           </div>
+          <div className='text-base xl:text-lg mt-3'>{data?.description}</div>
+        </div>
+        <div className='col-span-2 p-4 rounded bg-white'>
+          <div className='text-xl xl:text-2xl font-semibold text-red-500 text-right'>
+            ${data?.price}
+          </div>
+          <div className='text-sm xl:text-base mb-1 text-green-800 mt-3'>
+            In stock: {data?.stock}
+          </div>
+          <Button className='w-full mt-3'>Add to cart</Button>
         </div>
       </div>
     </div>
