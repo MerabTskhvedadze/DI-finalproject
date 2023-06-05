@@ -3,14 +3,6 @@ import { useQuery, useQueryClient } from 'react-query';
 import { AuthContext, TAuthorizationStage } from 'context/AuthContext';
 import { private_axios } from 'utils/private_axios';
 
-type UserData = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-};
-
 export const useFetchUser = () => {
   const { status } = useContext(AuthContext);
   const queryClient = useQueryClient();
@@ -20,7 +12,7 @@ export const useFetchUser = () => {
     return response.data;
   };
 
-  const { data: userData, refetch } = useQuery<UserData>('userData', fetchUser);
+  const { data: userData, refetch } = useQuery('userData', fetchUser);
 
   useEffect(() => {
     if (status === TAuthorizationStage.UNAUTHORIZED) {
