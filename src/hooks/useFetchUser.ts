@@ -15,19 +15,12 @@ export const useFetchUser = () => {
   const { status } = useContext(AuthContext);
   const queryClient = useQueryClient();
 
-  const axiosFetch = async () => {
-    const response = await private_axios.get('/me');
+  const fetchUser = async () => {
+    const response = await private_axios('/me');
     return response.data;
   };
 
-  const {
-    data: userData,
-    isLoading,
-    isError,
-    refetch,
-  } = useQuery<UserData>('userData', axiosFetch, {
-    enabled: status === TAuthorizationStage.AUTHORIZED,
-  });
+  const { data: userData, refetch } = useQuery<UserData>('userData', fetchUser);
 
   useEffect(() => {
     if (status === TAuthorizationStage.UNAUTHORIZED) {
@@ -37,5 +30,5 @@ export const useFetchUser = () => {
     refetch();
   }, [status, queryClient, refetch]);
 
-  return { userData, isLoading, isError };
+  return { userData };
 };
