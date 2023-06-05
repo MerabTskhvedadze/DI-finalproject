@@ -18,7 +18,7 @@ export default function Product() {
         <div className='col-span-8 lg:col-span-4 rounded bg-white m-auto py-4 w-full max-w-[900px]'>
           <ProductPreview images={[...data.images]} />
         </div>
-        <div className='col-span-6 lg:col-span-2 p-4 bg-white divide-y divide-gray-400 rounded'>
+        <div className='col-span-5 lg:col-span-2 p-4 bg-white divide-y divide-gray-400 rounded'>
           <ProductDetails
             title={data?.title}
             brand={data?.brand}
@@ -26,11 +26,11 @@ export default function Product() {
             description={data?.description}
           />
         </div>
-        <div className='col-span-2 lg:col-span-2 p-4 rounded bg-white'>
+        <div className='col-span-3 lg:col-span-2 p-4 rounded bg-white'>
           <ProductActions stock={data?.stock} price={data?.price} />
         </div>
       </div>
-      <div className='grid grid-cols-2 lg:grid-cols-3 '>
+      <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 '>
         <Suggestions category={data?.category} />
       </div>
     </div>

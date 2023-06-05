@@ -11,6 +11,9 @@ export default {
           DEFAULT: '#131921',
         },
       },
+      screens: {
+        xs: '340px',
+      },
     },
   },
   plugins: [],
