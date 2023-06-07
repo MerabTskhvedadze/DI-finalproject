@@ -1,13 +1,10 @@
 import { useContext } from 'react';
-import { ModalContext } from 'context/ModalContext';
-
-import { Button } from 'components/Button';
-
 import { Form, Input } from 'antd';
+import { ModalContext } from 'context/ModalContext';
+import { Button } from 'components/Button';
 
 export const ContactUsForm = () => {
   const { showModal } = useContext(ModalContext);
-
   const onFinish = () => showModal();
 
   return (

@@ -1,16 +1,18 @@
+import { useQuery } from 'react-query';
+import axios from 'axios';
 import { Card } from 'components/Card';
-import { MainCarousel } from './components/MainCarousel';
-import { useFetch } from 'hooks/useFetch';
+import { Carousel } from './components/Carousel';
 import { TProduct } from 'types/TProducts';
 
 export default function Home() {
-  const { data } = useFetch({
-    url: 'https://dummyjson.com/products?limit=12',
+  const { data, isError } = useQuery('products', async () => {
+    const response = await axios.get('https://dummyjson.com/products?limit=12');
+    return response.data;
   });
 
   return (
     <>
-      <MainCarousel />
+      <Carousel />
       <div className='relative grid  grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 -mt-40'>
         <h1 className='absolute -top-14 left-4 text-[1.50rem] font-semibold tracking-wide uppercase '>
           Top products

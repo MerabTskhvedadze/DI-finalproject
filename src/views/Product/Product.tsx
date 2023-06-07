@@ -3,10 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useFetch } from 'hooks/useFetch';
 import { animateScroll } from 'react-scroll/modules';
 
-import { ProductPreview } from './components/ProductPreview';
-import { ProductDetails } from './components/ProductDetails';
-import { ProductActions } from './components/ProductActions';
-import { Suggestions } from './components/Suggestions';
+import {
+  ProductPreview,
+  ProductDetails,
+  ProductActions,
+  Suggestions,
+} from './components';
 
 export default function Product() {
   const { id } = useParams();
