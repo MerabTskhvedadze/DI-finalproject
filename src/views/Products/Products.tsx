@@ -9,11 +9,6 @@ import { Breadcrumb } from 'components/Breadcrumb';
 import { TProduct } from 'types/TProducts';
 
 function Products() {
-  const breadcrumbItems = [
-    { text: 'Home', url: '/' },
-    { text: 'Products', url: '/products' },
-  ];
-
   const [page, setPage] = useState<number>(1);
   const itemsPerPage = 20;
   const skip = (page - 1) * itemsPerPage;
@@ -35,6 +30,11 @@ function Products() {
       return response.data;
     }
   );
+
+  const breadcrumbItems = [
+    { text: 'Home', url: '/' },
+    { text: 'Products', url: '/products' },
+  ];
 
   return (
     <>

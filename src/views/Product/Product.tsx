@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { animateScroll } from 'react-scroll/modules';
+import { Breadcrumb } from 'components/Breadcrumb';
 
 import {
   ProductPreview,
@@ -25,8 +26,15 @@ export default function Product() {
     });
   }, [id]);
 
+  const breadcrumbItems = [
+    { text: 'Home', url: '/' },
+    { text: 'Products', url: '/products' },
+    { text: `${data?.title}`, url: `/products/product:${id}` },
+  ];
+
   return (
     <div className='min-h-screen'>
+      <Breadcrumb items={breadcrumbItems} />
       <div className='grid grid-cols-8 gap-2 p-4'>
         <div className='col-span-8 lg:col-span-4 rounded bg-white py-4 w-full max-w-[900px]'>
           <ProductPreview images={data?.images ?? []} />
