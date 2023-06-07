@@ -8,7 +8,7 @@ export const Suggestions = ({ category }: { category: string }) => {
 
   return (
     <>
-      {data?.products?.map(({ title, price, thumbnail, id }: any) => (
+      {data?.products?.map(({ title, price, thumbnail, id }) => (
         <Card key={id} title={title} price={price} img={thumbnail} id={id} />
       ))}
     </>

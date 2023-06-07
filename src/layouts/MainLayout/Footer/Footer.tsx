@@ -27,7 +27,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className='bg-amazon py-12'>
+    <footer className='bg-amazon py-12 mt-20'>
       <div className='container mx-auto px-4'>
         <div className='grid grid-cols-3 gap-8'>
           {footerLinks.map((linkGroup) => (
