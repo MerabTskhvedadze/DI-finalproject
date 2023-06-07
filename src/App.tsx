@@ -11,6 +11,7 @@ const ContactUs = lazy(() => import('views/ContactUs'));
 const LogIn = lazy(() => import('views/LogIn'));
 const Registration = lazy(() => import('views/Registeration'));
 const Settings = lazy(() => import('views/Settings'));
+const Products = lazy(() => import('views/Products'));
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path='/' element={<Home />} />
+          <Route path='/products' element={<Products />} />
           <Route path='/product/:id' element={<Product />} />
         </Route>
         <Route element={<SideFeatureLayout />}>
