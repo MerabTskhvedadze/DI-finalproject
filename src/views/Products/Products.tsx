@@ -5,6 +5,7 @@ import { Pagination } from 'antd';
 import { animateScroll } from 'react-scroll';
 
 import { Card } from 'components/Card';
+import { Breadcrumb } from 'components/Breadcrumb';
 import { TProduct } from 'types/TProducts';
 
 function Products() {
@@ -30,9 +31,15 @@ function Products() {
     }
   );
 
+  const breadcrumbItems = [
+    { text: 'Home', url: '/' },
+    { text: 'Products', url: '/products' },
+  ];
+
   return (
     <>
-      <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-10'>
+      <Breadcrumb items={breadcrumbItems} />
+      <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
         {data?.products.map(({ title, images, id, price }: TProduct) => (
           <Card key={id} title={title} img={images[0]} id={id} price={price} />
         ))}
