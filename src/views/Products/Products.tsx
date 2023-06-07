@@ -1,7 +1,9 @@
+import axios from 'axios';
 import { useState } from 'react';
-import { animateScroll } from 'react-scroll';
+import { useQuery } from 'react-query';
 import { Pagination } from 'antd';
-import { useFetch } from 'hooks/useFetch';
+import { animateScroll } from 'react-scroll';
+
 import { Card } from 'components/Card';
 import { TProduct } from 'types/TProducts';
 
@@ -10,10 +12,6 @@ function Products() {
   const itemsPerPage = 20;
   const skip = (page - 1) * itemsPerPage;
 
-  const { data } = useFetch({
-    url: `https://dummyjson.com/products?limit=${itemsPerPage}&skip=${skip}`,
-  });
-
   const onChange = (page: number) => {
     setPage(page);
     animateScroll.scrollToTop({
@@ -21,6 +19,16 @@ function Products() {
       smooth: 'easeInOutQuart',
     });
   };
+
+  const { data, isError } = useQuery(
+    [itemsPerPage, skip, 'product'],
+    async () => {
+      const response = await axios.get(
+        `https://dummyjson.com/products?limit=${itemsPerPage}&skip=${skip}`
+      );
+      return response.data;
+    }
+  );
 
   return (
     <>

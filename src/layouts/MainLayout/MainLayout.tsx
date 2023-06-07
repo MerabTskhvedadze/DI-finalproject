@@ -1,13 +1,14 @@
 import { Outlet } from 'react-router-dom';
 
-import { Header } from './Header';
-import { Footer } from './Footer';
-import { Container } from './components/Container';
+import { Container, Footer, TopNav, BottomNav } from './components';
 
 export const MainLayout = () => {
   return (
     <div className='flex flex-col min-h-screen'>
-      <Header />
+      <header className='min-w-[1000px]'>
+        <TopNav />
+        <BottomNav />
+      </header>
       <Container>
         <Outlet />
       </Container>

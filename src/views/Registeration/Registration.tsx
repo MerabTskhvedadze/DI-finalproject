@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { message } from 'antd';
+
 import { public_axios } from 'utils/public_axios';
 import { RegistrationForm } from './components/RegistrationForm';
 import { FormValues } from './types/FormValues';

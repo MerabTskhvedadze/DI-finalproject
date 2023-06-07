@@ -12,15 +12,13 @@ export const ModalComponent = ({ message, title }: ModalComponentProps) => {
   const { isModalOpen, handleCancel } = useContext(ModalContext);
 
   return (
-    <div>
-      <Modal
-        title={title}
-        open={isModalOpen}
-        onCancel={handleCancel}
-        okButtonProps={{ style: { display: 'none' } }}
-      >
-        <p>{message}</p>
-      </Modal>
-    </div>
+    <Modal
+      title={title}
+      open={isModalOpen}
+      onCancel={handleCancel}
+      okButtonProps={{ style: { display: 'none' } }}
+    >
+      <p>{message}</p>
+    </Modal>
   );
 };

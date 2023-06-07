@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       setStatus(TAuthorizationStage.AUTHORIZED);
     }
   }, []);
-  console.log(status);
 
   return (
     <AuthContext.Provider value={{ status, setStatus }}>

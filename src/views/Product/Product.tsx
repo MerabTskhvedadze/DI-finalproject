@@ -1,17 +1,21 @@
+import axios from 'axios';
+import { useQuery } from 'react-query';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useFetch } from 'hooks/useFetch';
 import { animateScroll } from 'react-scroll/modules';
 
-import { ProductPreview } from './components/ProductPreview';
-import { ProductDetails } from './components/ProductDetails';
-import { ProductActions } from './components/ProductActions';
-import { Suggestions } from './components/Suggestions';
+import {
+  ProductPreview,
+  ProductDetails,
+  ProductActions,
+  Suggestions,
+} from './components';
 
 export default function Product() {
   const { id } = useParams();
-  const { data } = useFetch({
-    url: `https://dummyjson.com/product/${id}`,
+  const { data, isError } = useQuery([id, 'product'], async () => {
+    const response = await axios.get(`https://dummyjson.com/product/${id}`);
+    return response.data;
   });
 
   useEffect(() => {

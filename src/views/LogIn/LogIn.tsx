@@ -5,7 +5,6 @@ import { public_axios } from 'utils/public_axios';
 import { TLocalStorage } from 'types/localstorage';
 import { AuthContext, TAuthorizationStage } from 'context/AuthContext';
 
-import { responseData } from './types/responseData';
 import { FormValues } from './types/FormValues';
 
 import { message } from 'antd';
@@ -21,7 +20,7 @@ export default function LogIn() {
   };
 
   const { mutate } = useMutation(loginUser, {
-    onSuccess: (data: responseData) => {
+    onSuccess: (data: any) => {
       if (data.AccessToken) {
         localStorage.setItem(TLocalStorage.ACCESSTOKEN, data.AccessToken);
         setStatus(TAuthorizationStage.AUTHORIZED);

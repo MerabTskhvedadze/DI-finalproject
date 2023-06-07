@@ -10,7 +10,7 @@ import bannerImgFive from 'assets/images/bannerImgFive.jpg';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-export const MainCarousel = () => {
+export const Carousel = () => {
   return (
     <div className='h-[600px]'>
       <Swiper

@@ -2,10 +2,9 @@ import { Form, Input } from 'antd';
 import { Button } from 'components/Button';
 import { UseMutateFunction } from 'react-query';
 import { FormValues } from '../types/FormValues';
-import { responseData } from '../types/responseData';
 
 type LoginFormProps = {
-  loginUser: UseMutateFunction<responseData, any, FormValues, unknown>;
+  loginUser: UseMutateFunction<any, unknown, FormValues>;
 };
 
 export const LoginForm = ({ loginUser }: LoginFormProps) => {
