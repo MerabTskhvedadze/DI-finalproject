@@ -20,7 +20,7 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path='/' element={<Home />} />
           <Route path='/products' element={<Products />} />
-          <Route path='/product/:id' element={<Product />} />
+          <Route path='/products/product/:id' element={<Product />} />
         </Route>
         <Route element={<SideFeatureLayout />}>
           <Route path='/contact-us' element={<ContactUs />} />

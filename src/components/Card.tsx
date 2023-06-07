@@ -23,7 +23,7 @@ export const Card = ({ title, img, id, price }: CardProps) => {
       </div>
       <div className='flex items-center justify-between px-4'>
         <Link
-          to={`/product/${id}`}
+          to={`/products/product/${id}`}
           className='text-xs xl:text-sm text-blue-400 underline '
         >
           More details
