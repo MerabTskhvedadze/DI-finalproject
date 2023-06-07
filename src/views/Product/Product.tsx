@@ -1,6 +1,7 @@
+import axios from 'axios';
+import { useQuery } from 'react-query';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useFetch } from 'hooks/useFetch';
 import { animateScroll } from 'react-scroll/modules';
 
 import {
@@ -12,8 +13,9 @@ import {
 
 export default function Product() {
   const { id } = useParams();
-  const { data } = useFetch({
-    url: `https://dummyjson.com/product/${id}`,
+  const { data, isError } = useQuery([id, 'product'], async () => {
+    const response = await axios.get(`https://dummyjson.com/product/${id}`);
+    return response.data;
   });
 
   useEffect(() => {
