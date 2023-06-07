@@ -84,9 +84,7 @@ export const RegistrationForm = ({ registerUser }: RegistrationFormProps) => {
         <Input.Password />
       </Form.Item>
       <Form.Item>
-        <Button color='yellow' type='submit'>
-          Register
-        </Button>
+        <Button type='submit'>Register</Button>
       </Form.Item>
     </Form>
   );

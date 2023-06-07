@@ -11,8 +11,8 @@ interface BreadcrumbProps {
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
   return (
-    <nav aria-label='breadcrumb' className='my-2'>
-      <ol className='flex text-2xl text-blue-600 gap-1'>
+    <nav aria-label='breadcrumb' className='my-1 ml-4'>
+      <ol className='flex text-lg text-blue-600 gap-1'>
         {items.map((item, index) => (
           <React.Fragment key={index}>
             <li
