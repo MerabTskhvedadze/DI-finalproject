@@ -1,5 +1,7 @@
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { CartContext } from 'context/CartContext';
 
 type CardProps = {
   title: string;
@@ -9,15 +11,17 @@ type CardProps = {
 };
 
 export const Card = ({ title, img, id, price }: CardProps) => {
+  const { addToCart } = useContext(CartContext);
+
   return (
-    <div className='h-[420px] bg-white z-30 m-3 '>
+    <div className='h-[420px] bg-white z-30 m-3 select-none'>
       <div className='text-lg xl:text-xl font-semibold ml-4 mt-4'>
         {title.slice(0, 25)}...
       </div>
-      <div className='h-[300px] m-4 relative'>
+      <div className='h-[300px]  m-4 relative'>
         <img src={img} className='h-full w-full object-cover' />
         <ShoppingCartIcon
-          onClick={() => console.log(id)}
+          onClick={() => addToCart({ id, quantity: 0 })}
           className='h-[40px] lg:h-[30px] absolute right-[10px] -top-4 md:-top-3 bg-blue-300 rounded-[100%] p-1 cursor-pointer'
         />
       </div>
