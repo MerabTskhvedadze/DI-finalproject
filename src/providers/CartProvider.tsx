@@ -19,7 +19,7 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  const decreaseCartQuantity = (itemId: number) => {
+  const decreaseQuantity = (itemId: number) => {
     setCartItems((prevItems) =>
       prevItems.map((cartItem) =>
         cartItem.id === itemId && cartItem.quantity > 1
@@ -28,7 +28,7 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
       )
     );
   };
-  const increaseCartQuantity = (itemId: number) => {
+  const increaseQuantity = (itemId: number) => {
     setCartItems((prevItems) =>
       prevItems.map((cartItem) =>
         cartItem.id === itemId
@@ -38,13 +38,20 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     );
   };
 
+  const deleteItem = (itemId: number) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((cartItem) => cartItem.id !== itemId)
+    );
+  };
+
   return (
     <CartContext.Provider
       value={{
         cartItems,
         addToCart,
-        decreaseCartQuantity,
-        increaseCartQuantity,
+        decreaseQuantity,
+        increaseQuantity,
+        deleteItem,
       }}
     >
       {children}

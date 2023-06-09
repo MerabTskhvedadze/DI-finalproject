@@ -1,46 +1,65 @@
 import axios from 'axios';
-import { Button } from 'components/Button';
+import { useContext } from 'react';
 import { useQuery } from 'react-query';
+import { TrashIcon } from '@heroicons/react/24/outline';
+
+import { CartContext } from 'context/CartContext';
+import { Button } from 'components/Button';
+import { ImageThumbnail } from './ImageThumbnail';
+import { ItemDetails } from './ItemDetails';
 
 type CartItemProps = {
   id: number;
   quantity: number;
-  increaseCartQuantity: (id: number) => void;
-  decreaseCartQuantity: (id: number) => void;
 };
 
-export const CartItem = ({
-  id,
-  quantity,
-  increaseCartQuantity,
-  decreaseCartQuantity,
-}: CartItemProps) => {
+export const CartItem = ({ id, quantity }: CartItemProps) => {
+  const { decreaseQuantity, increaseQuantity, deleteItem } =
+    useContext(CartContext);
+
   const { data, error } = useQuery([id, 'cart'], async () => {
     const response = await axios.get(`https://dummyjson.com/product/${id}`);
     return response.data;
   });
 
   if (error) {
-    return <h1>Oops! something went wrong</h1>;
+    return (
+      <h1 className='text-red-700 text-center text-2xl'>
+        Oops! something went wrong
+      </h1>
+    );
   }
 
   return (
     <div className='flex gap-5'>
-      <div className='w-[150px] h-[100px]'>
-        <img
-          src={data.thumbnail}
-          className='w-full h-full rounded'
-          alt='Product'
-        />
-      </div>
-      <div>
-        <h1>{data?.title}</h1>
+      <ImageThumbnail src={data?.thumbnail} />
+      <div className='flex justify-between items-start grow'>
+        <div>
+          <ItemDetails
+            title={data?.title}
+            price={data?.price}
+            quantity={quantity}
+          />
+        </div>
         <div className='flex gap-2'>
-          <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
-          <h1 className='bg-amazon-yellow text-sm font-bold py-2 px-4 rounded-lg'>
-            {quantity}
-          </h1>
-          <Button onClick={() => increaseCartQuantity(id)}>+</Button>
+          <Button
+            onClick={() => decreaseQuantity(id)}
+            className='bg-blue-500 hover:bg-blue-600'
+          >
+            -
+          </Button>
+          <Button
+            onClick={() => deleteItem(id)}
+            className='bg-red-500 hover:bg-red-700'
+          >
+            <TrashIcon className='h-5' />
+          </Button>
+          <Button
+            onClick={() => increaseQuantity(id)}
+            className='bg-blue-500 hover:bg-blue-600'
+          >
+            +
+          </Button>
         </div>
       </div>
     </div>

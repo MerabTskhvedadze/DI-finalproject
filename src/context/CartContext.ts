@@ -8,13 +8,15 @@ export type CartItem = {
 type CartContextValues = {
   cartItems: CartItem[];
   addToCart: (item: CartItem) => void;
-  decreaseCartQuantity: (id: number) => void;
-  increaseCartQuantity: (id: number) => void;
+  decreaseQuantity: (id: number) => void;
+  increaseQuantity: (id: number) => void;
+  deleteItem: (id: number) => void;
 };
 
 export const CartContext = createContext<CartContextValues>({
   cartItems: [],
   addToCart: () => {},
-  decreaseCartQuantity: () => {},
-  increaseCartQuantity: () => {},
+  decreaseQuantity: () => {},
+  increaseQuantity: () => {},
+  deleteItem: () => {},
 });
