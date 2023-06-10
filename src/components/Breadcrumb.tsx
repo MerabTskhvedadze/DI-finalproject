@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface BreadcrumbItem {
   text: string;
@@ -16,19 +17,18 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
         {items.map((item, index) => (
           <React.Fragment key={index}>
             <li
-              className={`breadcrumb-item ${
-                index === items.length - 1 ? 'active' : ''
+              className={`${
+                index === items.length - 1 ? 'italic text-blue-400' : ''
               }`}
-              aria-current={index === items.length - 1 ? 'page' : undefined}
             >
               {index === items.length - 1 ? (
                 item.text
               ) : (
-                <a href={item.url}>{item.text}</a>
+                <Link to={`${item.url}`}>{item.text}</Link>
               )}
             </li>
             {index !== items.length - 1 && (
-              <li className='breadcrumb-separator'>/</li>
+              <li className='font-semibold text-gray-500'>/</li>
             )}
           </React.Fragment>
         ))}

@@ -48,7 +48,11 @@ export default function Product() {
           />
         </div>
         <div className='col-span-3 lg:col-span-2 p-4 rounded bg-white'>
-          <ProductActions stock={data?.stock} price={data?.price} />
+          <ProductActions
+            stock={data?.stock}
+            price={data?.price}
+            id={data?.id}
+          />
         </div>
       </div>
       <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3'>

@@ -1,13 +1,16 @@
 import { QeuryProvider } from './QueryProvider';
-import { ModalProvider } from './ModalProvider';
 import { AuthProvider } from './AuthProvider';
+import { CartProvider } from './CartProvider';
+import { ModalProvider } from './ModalProvider';
 import { PropsWithChildren } from 'react';
 
 export const Providers = ({ children }: PropsWithChildren) => {
   return (
     <QeuryProvider>
       <ModalProvider>
-        <AuthProvider>{children}</AuthProvider>
+        <CartProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </CartProvider>
       </ModalProvider>
     </QeuryProvider>
   );

@@ -5,6 +5,8 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       suspense: true,
+      staleTime: 6000,
+      useErrorBoundary: (error: any) => error.response?.status >= 500,
     },
   },
 });

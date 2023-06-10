@@ -3,7 +3,7 @@ import { LanguageDropdown } from './components/LanguageDropdown';
 
 export const BottomNav = () => {
   return (
-    <nav className='bg-amazon-light_blue text-gray-300 flex items-center justify-between py-[5px] px-[10px]'>
+    <nav className='bg-gray-700 text-gray-300 flex items-center justify-between py-[5px] px-[10px]'>
       <div>
         <Link to='/products' className='mx-4 hover:text-white'>
           All

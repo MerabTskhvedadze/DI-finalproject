@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import { Container, Footer, TopNav, BottomNav } from './components';
+import { Container, TopNav, BottomNav } from './components';
 
 export const MainLayout = () => {
   return (
@@ -12,7 +12,6 @@ export const MainLayout = () => {
       <Container>
         <Outlet />
       </Container>
-      <Footer />
     </div>
   );
 };

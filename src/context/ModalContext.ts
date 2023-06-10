@@ -1,12 +1,12 @@
 import { createContext } from 'react';
 
-type ModalContextProps = {
+type ModalContextValues = {
   isModalOpen: boolean;
   showModal: () => void;
   handleCancel: () => void;
 };
 
-export const ModalContext = createContext<ModalContextProps>({
+export const ModalContext = createContext<ModalContextValues>({
   isModalOpen: false,
   showModal: () => {},
   handleCancel: () => {},
