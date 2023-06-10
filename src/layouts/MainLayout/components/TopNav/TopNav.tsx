@@ -18,7 +18,7 @@ export const TopNav = () => {
   };
 
   return (
-    <nav className='flex items-center bg-amazon text-white h-[60px]'>
+    <nav className='flex items-center bg-gray-800 text-white h-[60px]'>
       <Link to={'/'}>
         <img src={amazonImg} className='h-[35px] w-[100px] my-3 mx-4' />
       </Link>

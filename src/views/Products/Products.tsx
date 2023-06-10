@@ -36,6 +36,13 @@ function Products() {
     { text: 'Products', url: '/products' },
   ];
 
+  if (isError) {
+    return (
+      <h1 className='text-7xl text mt-48 italic text-red-500'>
+        Oops! something went wrong
+      </h1>
+    );
+  }
   return (
     <>
       <Breadcrumb items={breadcrumbItems} />
@@ -44,9 +51,9 @@ function Products() {
           <Card key={id} title={title} img={images[0]} id={id} price={price} />
         ))}
       </div>
-      <div className='w-full'>
+      <div className='w-full my-10'>
         <Pagination
-          className='m-auto w-fit mt-10'
+          className='m-auto w-fit'
           defaultCurrent={page}
           current={page}
           defaultPageSize={itemsPerPage}

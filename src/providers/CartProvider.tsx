@@ -23,7 +23,11 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     setCartItems((prevItems) =>
       prevItems.map((cartItem) =>
         cartItem.id === itemId && cartItem.quantity > 1
-          ? { id: itemId, quantity: cartItem.quantity - 1 }
+          ? {
+              id: itemId,
+              price: cartItem.price,
+              quantity: cartItem.quantity - 1,
+            }
           : cartItem
       )
     );
@@ -32,7 +36,11 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     setCartItems((prevItems) =>
       prevItems.map((cartItem) =>
         cartItem.id === itemId
-          ? { id: itemId, quantity: cartItem.quantity + 1 }
+          ? {
+              id: itemId,
+              price: cartItem.price,
+              quantity: cartItem.quantity + 1,
+            }
           : cartItem
       )
     );

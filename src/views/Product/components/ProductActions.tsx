@@ -3,7 +3,7 @@ import { CartContext } from 'context/CartContext';
 import { Button } from 'components/Button';
 
 type ProductActionsProps = {
-  price: string;
+  price: number;
   stock: number;
   id: number;
 };
@@ -25,6 +25,7 @@ export const ProductActions = ({ price, stock, id }: ProductActionsProps) => {
           addToCart({
             id,
             quantity: 0,
+            price,
           })
         }
       >

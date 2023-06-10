@@ -21,7 +21,7 @@ export const Card = ({ title, img, id, price }: CardProps) => {
       <div className='h-[300px]  m-4 relative'>
         <img src={img} className='h-full w-full object-cover' />
         <ShoppingCartIcon
-          onClick={() => addToCart({ id, quantity: 0 })}
+          onClick={() => addToCart({ id, quantity: 0, price })}
           className='h-[40px] lg:h-[30px] absolute right-[10px] -top-4 md:-top-3 bg-blue-300 rounded-[100%] p-1 cursor-pointer'
         />
       </div>
