@@ -1,30 +1,20 @@
-import axios from 'axios';
-import { useQuery } from 'react-query';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import { animateScroll } from 'react-scroll/modules';
-import { Breadcrumb } from 'components/Breadcrumb';
+import { public_axios } from 'utils/public_axios';
 
-import {
-  ProductPreview,
-  ProductDetails,
-  ProductActions,
-  Suggestions,
-} from './components';
+import { Breadcrumb } from 'components/Breadcrumb';
+import { Button } from 'components/Button';
+import { ProductPreview, ProductDetails, Suggestions } from './components';
 
 export default function Product() {
   const { id } = useParams();
+
   const { data, isError } = useQuery([id, 'product'], async () => {
-    const response = await axios.get(`https://dummyjson.com/product/${id}`);
+    const response = await public_axios.get(`/product/${id}`);
     return response.data;
   });
-
-  useEffect(() => {
-    animateScroll.scrollToTop({
-      duration: 1000,
-      smooth: 'easeInOutQuart',
-    });
-  }, [id]);
 
   const breadcrumbItems = [
     { text: 'Home', url: '/' },
@@ -32,31 +22,47 @@ export default function Product() {
     { text: `${data?.title}`, url: `/products/product:${id}` },
   ];
 
+  useEffect(() => {
+    animateScroll.scrollToTop({
+      duration: 1500,
+      smooth: 'easeInOutQuart',
+    });
+  }, [id]);
+
+  if (isError) {
+    return (
+      <h1 className='text-7xl text mt-48 italic text-red-500'>
+        Oops! something went wrong
+      </h1>
+    );
+  }
   return (
     <div className='min-h-screen'>
       <Breadcrumb items={breadcrumbItems} />
-      <div className='grid grid-cols-8 gap-2 p-4'>
-        <div className='col-span-8 lg:col-span-4 rounded bg-white py-4 w-full max-w-[900px]'>
+      <div className='grid gap-2 p-4'>
+        <div className=' rounded bg-white py-4 w-full h-fit'>
           <ProductPreview images={data?.images ?? []} />
         </div>
-        <div className='col-span-5 lg:col-span-2 p-4 bg-white divide-y divide-gray-400 rounded'>
+        <div className=' p-4 bg-white divide-y divide-gray-400 rounded'>
           <ProductDetails
             title={data?.title}
             brand={data?.brand}
-            rating={data?.rating}
             description={data?.description}
-          />
-        </div>
-        <div className='col-span-3 lg:col-span-2 p-4 rounded bg-white'>
-          <ProductActions
-            stock={data?.stock}
+            rating={Math.floor(Math.random() * 5) + 1}
             price={data?.price}
-            id={data?.id}
           />
+          <Button className='w-1/5 mx-auto' onClick={() => console.log(data)}>
+            Add to cart
+          </Button>
         </div>
       </div>
-      <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3'>
-        <Suggestions category={data?.category} />
+      <div>
+        <h1 className='text-2xl mx-3 my-2 font-medium capitalize'>
+          Related products
+        </h1>
+        <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3'>
+          <Suggestions brand={data?.brand} />
+        </div>
       </div>
     </div>
   );
