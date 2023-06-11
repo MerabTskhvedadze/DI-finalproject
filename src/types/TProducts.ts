@@ -5,9 +5,5 @@ export type TProduct = {
   category: string;
   description: string;
   price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  thumbnail: string;
   images: string[];
 };

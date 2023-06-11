@@ -1,20 +1,29 @@
-import axios from 'axios';
 import { Card } from 'components/Card';
 import { useQuery } from 'react-query';
+import { public_axios } from 'utils/public_axios';
 import { TProduct } from 'types/TProducts';
 
-export const Suggestions = ({ category }: { category: string }) => {
-  const { data, isError } = useQuery([category, 'product'], async () => {
-    const response = await axios.get(
-      `https://dummyjson.com/products/category/${category}`
-    );
+export const Suggestions = ({ brand }: { brand: string }) => {
+  const { data, isError } = useQuery([brand, 'suggested'], async () => {
+    const response = await public_axios.post('/products', {
+      keyword: brand,
+      page_size: 5,
+      page_number: 0,
+    });
     return response.data;
   });
 
+  if (isError) {
+    return (
+      <h1 className='text-2xl text my-20 mx-5 italic text-red-500'>
+        Oops! something went wrong
+      </h1>
+    );
+  }
   return (
     <>
-      {data?.products?.map(({ title, price, thumbnail, id }: TProduct) => (
-        <Card key={id} title={title} price={price} img={thumbnail} id={id} />
+      {data?.products?.map((product: TProduct) => (
+        <Card key={product.id} data={product} />
       ))}
     </>
   );

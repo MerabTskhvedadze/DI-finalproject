@@ -6,6 +6,7 @@ const queryClient = new QueryClient({
     queries: {
       suspense: true,
       staleTime: 6000,
+      refetchOnWindowFocus: false,
       useErrorBoundary: (error: any) => error.response?.status >= 500,
     },
   },
