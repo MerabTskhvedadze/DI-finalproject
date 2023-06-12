@@ -10,32 +10,15 @@ import {
 } from '@heroicons/react/24/outline';
 import { Button } from 'antd';
 
-type CartItemProps = {
-  id: number;
-  quantity: number;
-};
-
-export const CartItem = ({ id, quantity }: CartItemProps) => {
-  const { increaseQuantity, decreaseQuantity, deleteItem } =
+export const CartItem = () => {
+  const { deleteItem,cartItems } =
     useContext(CartContext);
-  const { data, isError } = useQuery([id, 'cart'], async () => {
-    const response = await axios.get(`https://dummyjson.com/product/${id}`);
-    return response.data;
-  });
-
-  if (isError) {
-    return (
-      <h1 className='w-fit m-auto text-2xl text-red-500 my-10'>
-        Oops! Something went wrong
-      </h1>
-    );
-  }
 
   return (
     <div className='grid grid-cols-10 mx-10 border-t border-gray-100'>
       {/* thumbnail */}
-      <Link to={`/products/product/${id}`} className='col-span-2'>
-        <img src={data?.thumbnail} className='p-4 m-auto w-[200px] h-[130px]' />
+      <Link to={`/products/product/${cartItems.id}`} className='col-span-2'>
+        <img src={?.thumbnail} className='p-4 m-auto w-[200px] h-[130px]' />
       </Link>
 
       {/* details */}
@@ -59,7 +42,7 @@ export const CartItem = ({ id, quantity }: CartItemProps) => {
       {/* actions */}
       <div className='col-span-2 flex flex-col gap-2'>
         <div className='flex gap-2 items-start pt-2'>
-          <Button onClick={() => decreaseQuantity(id)} className='py-1 px-1'>
+          {/* <Button onClick={() => decreaseQuantity(id)} className='py-1 px-1'>
             <MinusCircleIcon className='h-5 text-blue-500' />
           </Button>
           <Button onClick={() => increaseQuantity(id)} className='py-1 px-1'>
@@ -67,7 +50,7 @@ export const CartItem = ({ id, quantity }: CartItemProps) => {
           </Button>
           <Button onClick={() => deleteItem(id)} className='py-1 px-1'>
             <TrashIcon className='h-5 text-red-500' />
-          </Button>
+          </Button> */}
         </div>
         <div className='font-medium'>
           quantity: <span className='text-blue-500 ml-1'>{quantity}</span>

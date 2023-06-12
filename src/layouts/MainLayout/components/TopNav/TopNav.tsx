@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthContext, TAuthorizationStage } from 'context/AuthContext';
+import { ShoppingCart } from './components/ShoppingCart';
 import { SearchContext } from 'context/SearchContext';
 import { TLocalStorage } from 'types/localstorage';
 import { Search } from './components/Search';
 import { Auth } from './components/Auth';
 
 import amazonImg from 'assets/images/amazon.png';
-import { ShoppingCart } from './components/ShoppingCart';
 
 export const TopNav = () => {
   const { status, setStatus } = useContext(AuthContext);

@@ -1,7 +1,6 @@
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { CartContext } from 'context/CartContext';
+import { useCart } from 'context/CartContext';
 import { TProduct } from 'types/TProducts';
 
 type CardProps = {
@@ -9,7 +8,11 @@ type CardProps = {
 };
 
 export const Card = ({ data }: CardProps) => {
-  const { addToCart } = useContext(CartContext);
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart(data, 1);
+  };
 
   return (
     <div className='h-[440px] bg-white z-30 m-3 select-none'>
@@ -19,17 +22,21 @@ export const Card = ({ data }: CardProps) => {
       <div className='px-4 py-2 text-xs italic text-gray-400'>
         By <span>{data?.brand}</span>
       </div>
-      <div className='h-[300px]  m-4 relative'>
-        <img src={data.images[0]} className='h-full w-full object-cover' />
+      <div className='h-[300px] m-4 relative'>
+        <img
+          src={data.images[0]}
+          className='h-full w-full object-cover'
+          alt={data.title}
+        />
         <ShoppingCartIcon
-          // onClick={() => addToCart()}
+          onClick={handleAddToCart}
           className='h-[40px] lg:h-[30px] absolute right-[10px] -top-4 md:-top-3 bg-blue-300 rounded-[100%] p-1 cursor-pointer'
         />
       </div>
       <div className='flex items-center justify-between px-4'>
         <Link
           to={`/products/product/${data.id}`}
-          className='text-xs xl:text-sm text-blue-400 underline '
+          className='text-xs xl:text-sm text-blue-400 underline'
         >
           More details
         </Link>
