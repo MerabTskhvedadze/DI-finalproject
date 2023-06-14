@@ -1,40 +1,88 @@
-import React, { useContext, useMemo } from 'react';
-import { CartContext } from 'context/CartContext';
-import { CartItem } from './components/CartItem';
+import { useEffect, useState } from 'react';
+import { useCart } from 'context/CartContext';
+import { Breadcrumb } from 'components/Breadcrumb';
+
+import {
+  MinusCircleIcon,
+  PlusCircleIcon,
+  TrashIcon,
+} from '@heroicons/react/24/solid';
 import { Button } from 'components/Button';
 
-function Cart() {
-  const { cartItems } = useContext(CartContext);
+export default function Cart() {
+  const { cart, increaseQuantity, decreaseQuantity, removeCartItem } =
+    useCart();
 
-  const totalPrice = useMemo(() => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
-  }, [cartItems]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
-  if (cartItems.length === 0) {
-    return (
-      <h1 className='text-center text-3xl text-red-500 italic mt-[30%]'>
-        Cart is empty!
-      </h1>
-    );
-  }
+  useEffect(() => {
+    let totalPrice = 0;
+    cart.items.forEach((item) => {
+      const { quantity, product } = item;
+      totalPrice += quantity * product.price;
+    });
+    setTotalPrice(totalPrice);
+  }, [cart]);
+
+  const breadcrumbItems = [{ text: 'Home', url: '/' }, { text: 'Cart' }];
 
   return (
-    <div className='bg-white'>
-      <div className='text-2xl xl:text-3xl m-4'>Shopping Cart</div>
-      {cartItems.map((item) => (
-        <CartItem key={item.id} id={item.id} quantity={item.quantity} />
-      ))}
-      <div className='mx-10 flex flex-col gap-5 items-center py-5 font-medium border-t border-gray-100'>
-        <p>
-          Total price: <span className='text-blue-500 ml-1'>${totalPrice}</span>
-        </p>
-        <Button>Checkout</Button>
+    <>
+      <Breadcrumb items={breadcrumbItems} />
+      <div className='px-5 lg:px-32 pt-5'>
+        <div className='flex flex-col w-full py-5 px-10 bg-gray-200 rounded-lg divide-y divide-gray-300'>
+          <div className='mb-5 font-medium text-gray-700 flex justify-between items-center'>
+            <h1>
+              Total price: <span className='text-blue-500'>${totalPrice}</span>
+            </h1>
+            <Button to='/checkout'>Checkout</Button>
+          </div>
+          {cart.items.length === 0 ? (
+            <h1 className='text-center text-3xl text-red-500 italic'>
+              Cart is empty!
+            </h1>
+          ) : (
+            cart.items.map(({ product, quantity }) => (
+              <div key={product.id} className='flex justify-between py-2 '>
+                <div className='flex items-start gap-2'>
+                  <img src={product.images[0]} className='w-[100px]' />
+                  <div>
+                    <h1 className='font-medium'>{product.title}</h1>
+                    <h2 className='font-medium text-gray-500'>
+                      By: {product.brand}
+                    </h2>
+                    <p className='font-medium italic text-blue-500'>
+                      ${product.price}
+                    </p>
+                  </div>
+                </div>
+                <div className='ml-5'>
+                  <div className='flex items-start justify-end select-none divide-x divide-gray-300'>
+                    <PlusCircleIcon
+                      className='px-1 h-[25px] cursor-pointer  text-blue-400 hover:text-blue-500'
+                      onClick={() => increaseQuantity(product.id)}
+                    />
+                    <MinusCircleIcon
+                      onClick={() => decreaseQuantity(product.id)}
+                      className='h-[25px] px-1 cursor-pointer text-blue-400 hover:text-blue-500'
+                    />
+                    <TrashIcon
+                      onClick={() => removeCartItem(product.id)}
+                      className='h-[25px] px-1 cursor-pointer text-blue-400 hover:text-blue-500'
+                    />
+                  </div>
+                  <div className='mt-2 text-right font-medium'>
+                    <p>
+                      Total:
+                      <span className='ml-1 text-blue-500'>{quantity}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
-
-export default React.memo(Cart);

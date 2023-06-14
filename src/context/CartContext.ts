@@ -1,23 +1,31 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
+import { TProduct } from 'types/TProducts';
 
 export type CartItem = {
-  id: number;
+  product: TProduct;
   quantity: number;
-  price: number;
 };
 
-type CartContextValues = {
-  cartItems: CartItem[];
-  addToCart: (item: CartItem) => void;
-  decreaseQuantity: (id: number) => void;
-  increaseQuantity: (id: number) => void;
-  deleteItem: (id: number) => void;
+export type Cart = {
+  items: CartItem[];
 };
 
-export const CartContext = createContext<CartContextValues>({
-  cartItems: [],
-  addToCart: () => {},
-  decreaseQuantity: () => {},
-  increaseQuantity: () => {},
-  deleteItem: () => {},
-});
+type CartContextType = {
+  cart: Cart;
+  addToCart: (product: TProduct, quantity?: number) => void;
+  removeCartItem: (productId: number) => void;
+  increaseQuantity: (productId: number) => void;
+  decreaseQuantity: (productId: number) => void;
+};
+
+export const CartContext = createContext<CartContextType | undefined>(
+  undefined
+);
+
+export const useCart = (): CartContextType => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
+};

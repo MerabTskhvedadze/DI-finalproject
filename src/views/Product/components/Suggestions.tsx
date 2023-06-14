@@ -15,7 +15,7 @@ export const Suggestions = ({ brand }: { brand: string }) => {
 
   if (isError) {
     return (
-      <h1 className='text-2xl text my-20 mx-5 italic text-red-500'>
+      <h1 className='text-center text-3xl text-red-500 italic'>
         Oops! something went wrong
       </h1>
     );
