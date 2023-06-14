@@ -37,7 +37,7 @@ export default function Product() {
 
   if (isError) {
     return (
-      <h1 className='text-7xl text mt-48 italic text-red-500'>
+      <h1 className='text-center text-3xl text-red-500 italic'>
         Oops! something went wrong
       </h1>
     );

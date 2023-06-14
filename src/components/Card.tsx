@@ -15,33 +15,33 @@ export const Card = ({ data }: CardProps) => {
   };
 
   return (
-    <div className='h-[440px] bg-white z-30 m-3 select-none'>
-      <div className='text-lg xl:text-xl font-semibold ml-4 mt-4'>
-        {data?.title.slice(0, 25)}...
-      </div>
-      <div className='px-4 py-2 text-xs italic text-gray-400'>
+    <div className='h-[440px] bg-white z-30 m-3 p-3 select-none'>
+      <Link
+        className='text-lg xl:text-xl font-semibold ml-4 mt-4 hover:underline hover:text-blue-500'
+        to={`/products/product/${data.id}`}
+      >
+        {data?.title.slice(0, 10)}...
+      </Link>
+      <div className='px-4 lg:py-2 text-xs italic text-gray-400'>
         By <span>{data?.brand}</span>
       </div>
       <div className='h-[300px] m-4 relative'>
-        <img
-          src={data.images[0]}
-          className='h-full w-full object-cover'
-          alt={data.title}
-        />
-        <ShoppingCartIcon
-          onClick={handleAddToCart}
-          className='h-[40px] lg:h-[30px] absolute right-[10px] -top-4 md:-top-3 bg-blue-300 rounded-[100%] p-1 cursor-pointer'
-        />
-      </div>
-      <div className='flex items-center justify-between px-4'>
         <Link
           to={`/products/product/${data.id}`}
-          className='text-xs xl:text-sm text-blue-400 underline'
+          className='h-[440px] bg-white z-30 m-3 select-none'
         >
-          More details
+          <img
+            src={data.images[0]}
+            className='h-full w-full object-cover'
+            alt={data.title}
+          />
         </Link>
-        <span className='italic font-mono'>{data.price}$</span>
+        <ShoppingCartIcon
+          onClick={handleAddToCart}
+          className='h-[25px] lg:h-[30px] absolute z-50 right-[10px] -top-4 md:-top-3 bg-blue-300 rounded-[100%] p-1 cursor-pointer'
+        />
       </div>
+      <span className='px-4 italic font-mono'>{data.price}$</span>
     </div>
   );
 };

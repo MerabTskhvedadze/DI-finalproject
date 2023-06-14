@@ -5,7 +5,7 @@ import { Container, TopNav, BottomNav } from './components';
 export const MainLayout = () => {
   return (
     <>
-      <header className='min-w-[1000px]'>
+      <header className='min-w-[300px]'>
         <TopNav />
         <BottomNav />
       </header>

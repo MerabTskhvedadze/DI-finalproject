@@ -1,11 +1,8 @@
-import { useContext } from 'react';
-import { Form, Input } from 'antd';
-import { ModalContext } from 'context/ModalContext';
+import { Form, Input, message } from 'antd';
 import { Button } from 'components/Button';
 
 export const ContactUsForm = () => {
-  const { showModal } = useContext(ModalContext);
-  const onFinish = () => showModal();
+  const onFinish = () => message.success('Form submited');
 
   return (
     <Form name='contact-form' onFinish={onFinish}>

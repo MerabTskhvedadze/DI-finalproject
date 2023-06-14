@@ -15,7 +15,7 @@ export default function Home() {
 
   if (isError) {
     return (
-      <h1 className='text-7xl text mt-48 italic text-red-500'>
+      <h1 className='text-center text-3xl text-red-500 italic'>
         Oops! something went wrong
       </h1>
     );
@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
       <Carousel />
-      <div className='relative grid grid-cols-2 xs:grid-cols-3 xl:grid-cols-4 -mt-80'>
+      <div className='relative -mt-96 md:-mt-80 lg:-mt-60 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
         {data?.products.map((product: TProduct) => {
           return <Card key={product.id} data={product} />;
         })}

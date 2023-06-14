@@ -49,8 +49,8 @@ export const Search = () => {
           </Button>
         </div>
         {isSearching && (
-          <div className='border overflow-auto max-h-96 min-h-[50px] border-gray-500 flex flex-col gap-4 text-xl rounded-sm mt-[3px] w-full bg-white text-black absolute z-40'>
-            {data?.products.length === 0 ? (
+          <div className='border overflow-auto max-h-96 min-h-[50px] border-gray-500 flex flex-col gap-4 text-xl rounded-sm w-full bg-white text-black absolute z-40'>
+            {data?.products.length === 0 || searchTerm === '' ? (
               <p className='w-fit m-auto text-red-500 italic'>
                 Products not found
               </p>
