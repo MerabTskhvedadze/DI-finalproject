@@ -7,7 +7,7 @@ import {
   PlusCircleIcon,
   TrashIcon,
 } from '@heroicons/react/24/solid';
-import { Button } from 'components/Button';
+import { CartButtons } from './components/CartButtons';
 
 export default function Cart() {
   const { cart, increaseQuantity, decreaseQuantity, removeCartItem } =
@@ -35,7 +35,7 @@ export default function Cart() {
             <h1>
               Total price: <span className='text-blue-500'>${totalPrice}</span>
             </h1>
-            <Button to='/checkout'>Checkout</Button>
+            <CartButtons />
           </div>
           {cart.items.length === 0 ? (
             <h1 className='text-center text-3xl text-red-500 italic'>
@@ -73,7 +73,7 @@ export default function Cart() {
                   </div>
                   <div className='mt-2 text-right font-medium'>
                     <p>
-                      Total:
+                      Amount:
                       <span className='ml-1 text-blue-500'>{quantity}</span>
                     </p>
                   </div>

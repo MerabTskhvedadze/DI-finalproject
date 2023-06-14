@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 type ButtonProps = {
   to?: string;
   type?: 'submit' | 'button';
+  disabled?: boolean;
   onClick?: () => void;
   className?: string;
   children: React.ReactNode;
@@ -11,6 +12,7 @@ type ButtonProps = {
 export const Button = ({
   to,
   type,
+  disabled,
   onClick,
   className = '',
   children,
@@ -26,7 +28,12 @@ export const Button = ({
   }
 
   return (
-    <button type={type} className={classes} onClick={onClick}>
+    <button
+      type={type}
+      className={classes}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
     </button>
   );
