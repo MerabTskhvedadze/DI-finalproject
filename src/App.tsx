@@ -13,6 +13,7 @@ const Registration = lazy(() => import('views/Registeration'));
 const Settings = lazy(() => import('views/Settings'));
 const Products = lazy(() => import('views/Products'));
 const Cart = lazy(() => import('views/Cart'));
+const Checkout = lazy(() => import('views/Checkout'));
 const SearchResult = lazy(() => import('views/SearchResults'));
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path='/contact-us' element={<ContactUs />} />
           <Route path='/login' element={<LogIn />} />
           <Route path='/register' element={<Registration />} />
+          <Route path='/checkout' element={<Checkout />} />
         </Route>
         <Route path='/settings' element={<Settings />} />
         <Route path='*' element={<PageNotFound />} />
