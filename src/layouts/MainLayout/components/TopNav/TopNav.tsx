@@ -2,9 +2,11 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthContext, TAuthorizationStage } from 'context/AuthContext';
+import { TLocalStorage } from 'types/localstorage';
+import { TSessionStorage } from 'types/sessionstorage';
+
 import { ShoppingCart } from './components/ShoppingCart';
 import { SearchContext } from 'context/SearchContext';
-import { TLocalStorage } from 'types/localstorage';
 import { Search } from './components/Search';
 import { Auth } from './components/Auth';
 
@@ -17,6 +19,7 @@ export const TopNav = () => {
   const logoutUser = () => {
     localStorage.removeItem(TLocalStorage.ACCESSTOKEN);
     setStatus(TAuthorizationStage.UNAUTHORIZED);
+    sessionStorage.removeItem(TSessionStorage.ROLE);
   };
 
   return (

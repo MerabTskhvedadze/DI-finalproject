@@ -8,9 +8,11 @@ export enum TAuthorizationStage {
 type AuthContextValue = {
   status: TAuthorizationStage;
   setStatus: React.Dispatch<React.SetStateAction<TAuthorizationStage>>;
+  user: any;
 };
 
 export const AuthContext = createContext<AuthContextValue>({
+  user: undefined,
   status: TAuthorizationStage.UNAUTHORIZED,
   setStatus: () => {},
 });

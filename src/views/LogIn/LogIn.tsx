@@ -9,6 +9,8 @@ import { FormValues } from './types/FormValues';
 
 import { message } from 'antd';
 import { LoginForm } from './components/LoginForm';
+import { TSessionStorage } from 'types/sessionstorage';
+import { TUser_Roles } from 'types/user.types';
 
 export default function LogIn() {
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ export default function LogIn() {
 
   const loginUser = async (values: FormValues) => {
     const response = await public_axios.post('/login', values);
-    return response.data;
+    return response?.data;
   };
 
   const { mutate } = useMutation(loginUser, {
@@ -25,6 +27,14 @@ export default function LogIn() {
         localStorage.setItem(TLocalStorage.ACCESSTOKEN, data.AccessToken);
         setStatus(TAuthorizationStage.AUTHORIZED);
       }
+
+      // setting user's role on session storage
+      if (data?.User?.email) {
+        sessionStorage.setItem(TSessionStorage.ROLE, TUser_Roles.USER);
+      } else {
+        sessionStorage.setItem(TSessionStorage.ROLE, TUser_Roles.ADMIN);
+      }
+
       message.success(`Wellcome back`);
       navigate('/');
     },
