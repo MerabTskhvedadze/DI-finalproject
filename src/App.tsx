@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { TUser_Roles } from 'context/ProtectedContext';
-import { ProtectedProvider } from 'providers/ProtectedProvider';
 
 import { MainLayout, SideFeatureLayout } from 'layouts';
 import { ProtectedRoutes } from 'routes/ProtectedRoutes';
@@ -38,26 +37,14 @@ function App() {
           <Route path='/contact-us' element={<ContactUs />} />
         </Route>
 
-        <Route
-          element={
-            <ProtectedProvider>
-              <ProtectedRoutes roles={[TUser_Roles.GUEST]} />
-            </ProtectedProvider>
-          }
-        >
+        <Route element={<ProtectedRoutes roles={[TUser_Roles.GUEST]} />}>
           <Route element={<SideFeatureLayout />}>
             <Route path='/login' element={<LogIn />} />
             <Route path='/register' element={<Registration />} />
           </Route>
         </Route>
 
-        <Route
-          element={
-            <ProtectedProvider>
-              <ProtectedRoutes roles={[TUser_Roles.USER]} />
-            </ProtectedProvider>
-          }
-        >
+        <Route element={<ProtectedRoutes roles={[TUser_Roles.USER]} />}>
           <Route element={<SideFeatureLayout />}>
             <Route path='/checkout' element={<Checkout />} />
             <Route path='/settings' element={<Settings />} />

@@ -23,10 +23,10 @@ export const ProtectedProvider = ({ children }: PropsWithChildren) => {
     } else {
       setPending(false);
     }
-  }, [status]);
+  }, [token]);
 
   return (
-    <ProtectedContext.Provider value={{ pending, currentRole }}>
+    <ProtectedContext.Provider value={{ pending, currentRole, setCurrentRole }}>
       {children}
     </ProtectedContext.Provider>
   );

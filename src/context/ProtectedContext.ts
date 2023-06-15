@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { SetStateAction, createContext, useContext } from 'react';
 
 export enum TUser_Roles {
   GUEST = 'guest',
@@ -9,6 +9,7 @@ export enum TUser_Roles {
 type ProtectedContextValues = {
   pending: boolean;
   currentRole: TUser_Roles;
+  setCurrentRole: React.Dispatch<SetStateAction<TUser_Roles>>;
 };
 
 export const ProtectedContext = createContext<
