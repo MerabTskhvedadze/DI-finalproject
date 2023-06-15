@@ -1,15 +1,14 @@
 import { Form, Input } from 'antd';
 import { Button } from 'components/Button';
-import { UseMutateFunction } from 'react-query';
 import { FormValues } from '../types/FormValues';
 
 type LoginFormProps = {
-  loginUser: UseMutateFunction<any, unknown, FormValues>;
+  login: (values: FormValues) => void;
 };
 
-export const LoginForm = ({ loginUser }: LoginFormProps) => {
+export const LoginForm = ({ login }: LoginFormProps) => {
   const onFinish = (values: FormValues) => {
-    loginUser(values);
+    login(values);
   };
 
   return (
@@ -17,10 +16,7 @@ export const LoginForm = ({ loginUser }: LoginFormProps) => {
       <Form.Item
         label='Email'
         name='email'
-        rules={[
-          { required: true, message: 'Please enter your email address' },
-          { type: 'email', message: 'Please enter a valid email address' },
-        ]}
+        rules={[{ required: true, message: 'Please enter your email' }]}
       >
         <Input />
       </Form.Item>

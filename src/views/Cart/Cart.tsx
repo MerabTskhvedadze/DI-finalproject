@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useCart } from 'context/CartContext';
 import { Breadcrumb } from 'components/Breadcrumb';
 
@@ -10,19 +9,13 @@ import {
 import { CartButtons } from './components/CartButtons';
 
 export default function Cart() {
-  const { cart, increaseQuantity, decreaseQuantity, removeCartItem } =
-    useCart();
-
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-
-  useEffect(() => {
-    let totalPrice = 0;
-    cart.items.forEach((item) => {
-      const { quantity, product } = item;
-      totalPrice += quantity * product.price;
-    });
-    setTotalPrice(totalPrice);
-  }, [cart]);
+  const {
+    cart,
+    totalPrice,
+    increaseQuantity,
+    decreaseQuantity,
+    removeCartItem,
+  } = useCart();
 
   const breadcrumbItems = [{ text: 'Home', url: '/' }, { text: 'Cart' }];
 

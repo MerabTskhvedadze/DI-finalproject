@@ -9,26 +9,31 @@ import { FormValues } from './types/FormValues';
 export default function Registration() {
   const navigate = useNavigate();
 
-  const registerUser = async (values: FormValues) => {
-    await public_axios.post('/register', values);
-  };
+  const { mutate } = useMutation(
+    async (values: FormValues) => {
+      await public_axios.post('/register', values);
+    },
+    {
+      onSuccess: () => {
+        navigate('/login');
+        message.success('Registration was successful');
+      },
+      onError: (error: any) => {
+        message.error(error.response.data);
+      },
+    }
+  );
 
-  const { mutate } = useMutation(registerUser, {
-    onSuccess: () => {
-      navigate('/login');
-      message.success('Registration was successful');
-    },
-    onError: (error: any) => {
-      message.error(error.response.data);
-    },
-  });
+  const register = (values: FormValues) => {
+    mutate(values);
+  };
 
   return (
     <>
       <h1 className='mb-5 text-sm sm:text-lg font-bold text-gray-700 tracking-wider'>
         Sign Up
       </h1>
-      <RegistrationForm registerUser={mutate} />
+      <RegistrationForm register={register} />
     </>
   );
 }

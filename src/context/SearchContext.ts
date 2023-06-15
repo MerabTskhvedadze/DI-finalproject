@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 
 type SearchContextValues = {
   isSearching: boolean;
@@ -7,9 +7,14 @@ type SearchContextValues = {
   changeSearchState: (value: boolean) => void;
 };
 
-export const SearchContext = createContext<SearchContextValues>({
-  isSearching: false,
-  searchTerm: '',
-  changeSearchTerm: () => {},
-  changeSearchState: () => {},
-});
+export const SearchContext = createContext<SearchContextValues | undefined>(
+  undefined
+);
+
+export const useSearch = (): SearchContextValues => {
+  const context = useContext(SearchContext);
+  if (!context) {
+    throw new Error('useSearch must be used within a SearchProvider');
+  }
+  return context;
+};

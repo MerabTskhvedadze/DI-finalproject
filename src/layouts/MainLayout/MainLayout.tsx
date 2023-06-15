@@ -1,11 +1,13 @@
 import { Outlet } from 'react-router-dom';
 
-import { Container, TopNav, BottomNav } from './components';
+import { Container } from './components';
+import { BottomNav } from './BottomNav/BottomNav';
+import { TopNav } from './TopNav/TopNav';
 
 export const MainLayout = () => {
   return (
     <>
-      <header className='min-w-[300px]'>
+      <header>
         <TopNav />
         <BottomNav />
       </header>

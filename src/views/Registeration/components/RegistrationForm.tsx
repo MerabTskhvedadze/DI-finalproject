@@ -1,15 +1,14 @@
-import { UseMutateFunction } from 'react-query';
 import { Form, Input } from 'antd';
 import { Button } from 'components/Button';
 import { FormValues } from '../types/FormValues';
 
 type RegistrationFormProps = {
-  registerUser: UseMutateFunction<void, any, FormValues, unknown>;
+  register: (values: FormValues) => void;
 };
 
-export const RegistrationForm = ({ registerUser }: RegistrationFormProps) => {
+export const RegistrationForm = ({ register }: RegistrationFormProps) => {
   const onFinish = (values: FormValues) => {
-    registerUser(values);
+    register(values);
   };
 
   return (

@@ -4,24 +4,17 @@ export enum TAuthorizationStage {
   AUTHORIZED = 'authorized',
   UNAUTHORIZED = 'unauthorized',
 }
-export enum TUser_Roles {
-  GUEST = 'guest',
-  USER = 'user',
-  ADMIN = 'admin',
-}
 
-type AuthContextValue = {
+type AuthContextValues = {
   status: TAuthorizationStage;
   setStatus: React.Dispatch<React.SetStateAction<TAuthorizationStage>>;
-  role: TUser_Roles;
-  setRole: React.Dispatch<React.SetStateAction<TUser_Roles>>;
 };
 
-export const AuthContext = createContext<AuthContextValue | undefined>(
+export const AuthContext = createContext<AuthContextValues | undefined>(
   undefined
 );
 
-export const useAuthContext = (): AuthContextValue => {
+export const useAuth = (): AuthContextValues => {
   const context = useContext(AuthContext);
   if (!context) {
     throw new Error('useAuth must be used within a AuthProvider');

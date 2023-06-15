@@ -1,9 +1,19 @@
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { Cart, CartContext } from 'context/CartContext';
 import { TProduct } from 'types/TProducts';
 
 export const CartProvider = ({ children }: PropsWithChildren) => {
   const [cart, setCart] = useState<Cart>({ items: [] });
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  useEffect(() => {
+    let totalPrice = 0;
+    cart.items.forEach((item) => {
+      const { quantity, product } = item;
+      totalPrice += quantity * product.price;
+    });
+    setTotalPrice(totalPrice);
+  }, [cart]);
 
   const addToCart = (product: TProduct, quantity = 1): void => {
     setCart((prevCart) => {
@@ -78,6 +88,7 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     <CartContext.Provider
       value={{
         cart,
+        totalPrice,
         addToCart,
         removeCartItem,
         increaseQuantity,

@@ -7,7 +7,7 @@ export const Suggestions = ({ brand }: { brand: string }) => {
   const { data, isError } = useQuery([brand, 'suggested'], async () => {
     const response = await public_axios.post('/products', {
       keyword: brand,
-      page_size: 5,
+      page_size: 6,
       page_number: 0,
     });
     return response.data;
