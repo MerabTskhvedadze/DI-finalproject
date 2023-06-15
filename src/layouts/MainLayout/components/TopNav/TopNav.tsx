@@ -1,9 +1,12 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AuthContext, TAuthorizationStage } from 'context/AuthContext';
+import {
+  TAuthorizationStage,
+  useAuthContext,
+  TUser_Roles,
+} from 'context/AuthContext';
 import { TLocalStorage } from 'types/localstorage';
-import { TSessionStorage } from 'types/sessionstorage';
 
 import { ShoppingCart } from './components/ShoppingCart';
 import { SearchContext } from 'context/SearchContext';
@@ -13,13 +16,14 @@ import { Auth } from './components/Auth';
 import amazonImg from 'assets/images/amazon.png';
 
 export const TopNav = () => {
-  const { status, setStatus } = useContext(AuthContext);
+  const { status, setStatus, setRole } = useAuthContext();
   const { isSearching, changeSearchState } = useContext(SearchContext);
 
   const logoutUser = () => {
     localStorage.removeItem(TLocalStorage.ACCESSTOKEN);
     setStatus(TAuthorizationStage.UNAUTHORIZED);
-    sessionStorage.removeItem(TSessionStorage.ROLE);
+    localStorage.removeItem(TLocalStorage.ROLE);
+    setRole(TUser_Roles.GUEST);
   };
 
   return (

@@ -1,11 +1,10 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useAuthContext, TUser_Roles } from 'context/AuthContext';
 
-import { TUser_Roles } from 'types/user.types';
 import { MainLayout, SideFeatureLayout } from 'layouts';
 import { ProtectedRoutes } from 'components/ProtectedRoutes';
 import { Loading } from 'views/Loading';
-import { TSessionStorage } from 'types/sessionstorage';
 
 const PageNotFound = lazy(() => import('views/PageNotFound'));
 const Home = lazy(() => import('views/Home'));
@@ -20,9 +19,7 @@ const Checkout = lazy(() => import('views/Checkout'));
 const SearchResult = lazy(() => import('views/SearchResults'));
 
 function App() {
-  const currentRole = sessionStorage.getItem(
-    TSessionStorage.ROLE
-  ) as TUser_Roles;
+  const { role } = useAuthContext();
 
   return (
     <Suspense fallback={<Loading />}>
@@ -41,10 +38,7 @@ function App() {
 
         <Route
           element={
-            <ProtectedRoutes
-              roles={[TUser_Roles.GUEST]}
-              currentRole={currentRole}
-            />
+            <ProtectedRoutes roles={[TUser_Roles.GUEST]} currentRole={role} />
           }
         >
           <Route element={<SideFeatureLayout />}>
@@ -55,10 +49,7 @@ function App() {
 
         <Route
           element={
-            <ProtectedRoutes
-              roles={[TUser_Roles.USER]}
-              currentRole={currentRole}
-            />
+            <ProtectedRoutes roles={[TUser_Roles.USER]} currentRole={role} />
           }
         >
           <Route element={<SideFeatureLayout />}>

@@ -1,20 +1,22 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { public_axios } from 'utils/public_axios';
 import { TLocalStorage } from 'types/localstorage';
-import { AuthContext, TAuthorizationStage } from 'context/AuthContext';
+
+import {
+  TAuthorizationStage,
+  TUser_Roles,
+  useAuthContext,
+} from 'context/AuthContext';
 
 import { FormValues } from './types/FormValues';
 
 import { message } from 'antd';
 import { LoginForm } from './components/LoginForm';
-import { TSessionStorage } from 'types/sessionstorage';
-import { TUser_Roles } from 'types/user.types';
 
 export default function LogIn() {
   const navigate = useNavigate();
-  const { setStatus } = useContext(AuthContext);
+  const { setStatus, setRole } = useAuthContext();
 
   const loginUser = async (values: FormValues) => {
     const response = await public_axios.post('/login', values);
@@ -30,9 +32,11 @@ export default function LogIn() {
 
       // setting user's role on session storage
       if (data?.User?.email) {
-        sessionStorage.setItem(TSessionStorage.ROLE, TUser_Roles.USER);
+        localStorage.setItem(TLocalStorage.ROLE, TUser_Roles.USER);
+        setRole(TUser_Roles.USER);
       } else {
-        sessionStorage.setItem(TSessionStorage.ROLE, TUser_Roles.ADMIN);
+        localStorage.setItem(TLocalStorage.ROLE, TUser_Roles.ADMIN);
+        setRole(TUser_Roles.ADMIN);
       }
 
       message.success(`Wellcome back`);
