@@ -71,7 +71,7 @@ export default function Products() {
           />
         </div>
       </div>
-      <div className='grid grid-cols-2 xs:grid-cols-3 xl:grid-cols-4'>
+      <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
         {data?.products.map((product: TProduct) => (
           <Card key={product.id} data={product} />
         ))}
