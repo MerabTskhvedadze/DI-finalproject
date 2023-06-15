@@ -1,9 +1,13 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { public_axios } from 'utils/public_axios';
 import { TLocalStorage } from 'types/localstorage';
-import { AuthContext, TAuthorizationStage } from 'context/AuthContext';
+
+import {
+  TAuthorizationStage,
+  TUser_Roles,
+  useAuthContext,
+} from 'context/AuthContext';
 
 import { FormValues } from './types/FormValues';
 
@@ -12,11 +16,11 @@ import { LoginForm } from './components/LoginForm';
 
 export default function LogIn() {
   const navigate = useNavigate();
-  const { setStatus } = useContext(AuthContext);
+  const { setStatus, setRole } = useAuthContext();
 
   const loginUser = async (values: FormValues) => {
     const response = await public_axios.post('/login', values);
-    return response.data;
+    return response?.data;
   };
 
   const { mutate } = useMutation(loginUser, {
@@ -25,6 +29,16 @@ export default function LogIn() {
         localStorage.setItem(TLocalStorage.ACCESSTOKEN, data.AccessToken);
         setStatus(TAuthorizationStage.AUTHORIZED);
       }
+
+      // setting user's role on session storage
+      if (data?.User?.email) {
+        localStorage.setItem(TLocalStorage.ROLE, TUser_Roles.USER);
+        setRole(TUser_Roles.USER);
+      } else {
+        localStorage.setItem(TLocalStorage.ROLE, TUser_Roles.ADMIN);
+        setRole(TUser_Roles.ADMIN);
+      }
+
       message.success(`Wellcome back`);
       navigate('/');
     },

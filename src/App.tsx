@@ -1,7 +1,9 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useAuthContext, TUser_Roles } from 'context/AuthContext';
 
 import { MainLayout, SideFeatureLayout } from 'layouts';
+import { ProtectedRoutes } from 'components/ProtectedRoutes';
 import { Loading } from 'views/Loading';
 
 const PageNotFound = lazy(() => import('views/PageNotFound'));
@@ -17,6 +19,8 @@ const Checkout = lazy(() => import('views/Checkout'));
 const SearchResult = lazy(() => import('views/SearchResults'));
 
 function App() {
+  const { role } = useAuthContext();
+
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
@@ -29,14 +33,31 @@ function App() {
             path={'/search-results/:keyword?'}
             element={<SearchResult />}
           />
-        </Route>
-        <Route element={<SideFeatureLayout />}>
           <Route path='/contact-us' element={<ContactUs />} />
-          <Route path='/login' element={<LogIn />} />
-          <Route path='/register' element={<Registration />} />
-          <Route path='/checkout' element={<Checkout />} />
         </Route>
-        <Route path='/settings' element={<Settings />} />
+
+        <Route
+          element={
+            <ProtectedRoutes roles={[TUser_Roles.GUEST]} currentRole={role} />
+          }
+        >
+          <Route element={<SideFeatureLayout />}>
+            <Route path='/login' element={<LogIn />} />
+            <Route path='/register' element={<Registration />} />
+          </Route>
+        </Route>
+
+        <Route
+          element={
+            <ProtectedRoutes roles={[TUser_Roles.USER]} currentRole={role} />
+          }
+        >
+          <Route element={<SideFeatureLayout />}>
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='/settings' element={<Settings />} />
+          </Route>
+        </Route>
+
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </Suspense>

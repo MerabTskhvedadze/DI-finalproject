@@ -1,10 +1,9 @@
-import { useContext } from 'react';
-import { AuthContext, TAuthorizationStage } from 'context/AuthContext';
+import { TAuthorizationStage, useAuthContext } from 'context/AuthContext';
 import { Button } from 'components/Button';
 import { message } from 'antd';
 
 export const CartButtons = () => {
-  const { status } = useContext(AuthContext);
+  const { status } = useAuthContext();
 
   if (status === TAuthorizationStage.UNAUTHORIZED) {
     return (
