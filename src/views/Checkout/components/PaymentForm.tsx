@@ -3,9 +3,7 @@ import { Button } from 'components/Button';
 
 export const PaymentForm = () => {
   const handlePayment = () => {
-    setTimeout(() => {
-      message.success('Payment successful!');
-    }, 1000);
+    message.success('Payment successful!');
   };
 
   return (

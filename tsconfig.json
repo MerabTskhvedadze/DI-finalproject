@@ -9,7 +9,8 @@
       "context/*": ["context/*"],
       "providers/*": ["providers/*"],
       "utils/*": ["utils/*"],
-      "types/*": ["types/*"]
+      "types/*": ["types/*"],
+      "routes/*": ["routes/*"]
     },
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

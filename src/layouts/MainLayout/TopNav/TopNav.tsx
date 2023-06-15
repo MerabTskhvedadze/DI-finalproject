@@ -1,29 +1,22 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import {
-  TAuthorizationStage,
-  useAuthContext,
-  TUser_Roles,
-} from 'context/AuthContext';
+import { TAuthorizationStage, useAuth } from 'context/AuthContext';
 import { TLocalStorage } from 'types/localstorage';
 
 import { ShoppingCart } from './components/ShoppingCart';
-import { SearchContext } from 'context/SearchContext';
+import { useSearch } from 'context/SearchContext';
 import { Search } from './components/Search';
 import { Auth } from './components/Auth';
 
 import amazonImg from 'assets/images/amazon.png';
 
 export const TopNav = () => {
-  const { status, setStatus, setRole } = useAuthContext();
-  const { isSearching, changeSearchState } = useContext(SearchContext);
+  const { status, setStatus } = useAuth();
+  const { isSearching, changeSearchState } = useSearch();
 
-  const logoutUser = () => {
+  const logout = () => {
     localStorage.removeItem(TLocalStorage.ACCESSTOKEN);
     setStatus(TAuthorizationStage.UNAUTHORIZED);
-    localStorage.removeItem(TLocalStorage.ROLE);
-    setRole(TUser_Roles.GUEST);
   };
 
   return (
@@ -38,14 +31,13 @@ export const TopNav = () => {
         <Link to={'/'}>
           <img src={amazonImg} className='h-[35px] w-[100px] my-3 mx-4' />
         </Link>
-        <div className='flex grow relative items-center px-10 z-50'>
+        <div className='flex grow relative items-center z-50'>
           <Search />
         </div>
         <div className='flex items-center m-4'>
           <Auth
-            status={status}
-            authorized={TAuthorizationStage.AUTHORIZED}
-            logoutUser={logoutUser}
+            authorized={status === TAuthorizationStage.AUTHORIZED}
+            logout={logout}
           />
           <ShoppingCart />
         </div>

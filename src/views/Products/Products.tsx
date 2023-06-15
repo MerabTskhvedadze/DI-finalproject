@@ -1,25 +1,31 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Pagination } from 'antd';
 import { animateScroll } from 'react-scroll';
+import { Pagination, Select } from 'antd';
 
 import { Card } from 'components/Card';
 import { Breadcrumb } from 'components/Breadcrumb';
 import { TProduct } from 'types/TProducts';
 import { public_axios } from 'utils/public_axios';
+import { filteredOptions } from './utils/selectHelper';
 
 export default function Products() {
   const [page, setPage] = useState<number>(1);
+  const [brandName, setBrandName] = useState<string>('Samsung');
   const itemsPerPage = 20;
   const skip = (page - 1) * itemsPerPage;
 
-  const { data, isError } = useQuery([skip, 'products'], async () => {
-    const response = await public_axios.post('/products', {
-      page_size: itemsPerPage,
-      page_number: skip,
-    });
-    return response.data;
-  });
+  const { data, isError } = useQuery(
+    [skip, brandName, 'products'],
+    async () => {
+      const response = await public_axios.post('/products', {
+        page_size: itemsPerPage,
+        page_number: skip,
+        keyword: brandName,
+      });
+      return response.data;
+    }
+  );
 
   const pageHandler = (page: number) => {
     setPage(page);
@@ -41,9 +47,30 @@ export default function Products() {
       </h1>
     );
   }
+
+  const handleBrandChange = (value: string) => {
+    setBrandName(value);
+  };
+
   return (
     <>
-      <Breadcrumb items={breadcrumbItems} />
+      <div className='flex justify-between items-center'>
+        <Breadcrumb items={breadcrumbItems} />
+        <div className='w-[150px] mx-3 mt-3'>
+          <Select
+            defaultValue={brandName}
+            value={brandName}
+            showSearch
+            size='large'
+            onChange={handleBrandChange}
+            style={{ width: '100%' }}
+            options={filteredOptions(brandName).map((item) => ({
+              value: item,
+              label: item,
+            }))}
+          />
+        </div>
+      </div>
       <div className='grid grid-cols-2 xs:grid-cols-3 xl:grid-cols-4'>
         {data?.products.map((product: TProduct) => (
           <Card key={product.id} data={product} />

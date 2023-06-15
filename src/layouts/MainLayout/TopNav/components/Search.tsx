@@ -1,16 +1,15 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { public_axios } from 'utils/public_axios';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
-import { SearchContext } from 'context/SearchContext';
+import { useSearch } from 'context/SearchContext';
 import { Button } from 'components/Button';
 import { TProduct } from 'types/TProducts';
 
 export const Search = () => {
   const { searchTerm, isSearching, changeSearchState, changeSearchTerm } =
-    useContext(SearchContext);
+    useSearch();
 
   const { data } = useQuery(
     [searchTerm, 'search'],

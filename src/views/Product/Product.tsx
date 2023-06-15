@@ -45,11 +45,11 @@ export default function Product() {
   return (
     <div className='min-h-screen'>
       <Breadcrumb items={breadcrumbItems} />
-      <div className='grid gap-2 p-4'>
-        <div className=' rounded bg-white py-4 w-full h-fit'>
+      <div className='grid grid-cols-8 gap-2 p-10 sm:p-4'>
+        <div className='col-span-8 sm:col-span-4 md:col-span-5 rounded bg-white py-4 w-full h-fit'>
           <ProductPreview images={data?.images ?? []} />
         </div>
-        <div className=' p-4 bg-white divide-y divide-gray-400 rounded'>
+        <div className='col-span-8 sm:col-span-4 md:col-span-3 p-10 sm:p-4 bg-white divide-y divide-gray-400 rounded'>
           <ProductDetails
             title={data?.title}
             brand={data?.brand}
