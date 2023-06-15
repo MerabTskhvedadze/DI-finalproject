@@ -9,14 +9,17 @@ import { Search } from './components/Search';
 import { Auth } from './components/Auth';
 
 import amazonImg from 'assets/images/amazon.png';
+import { TUser_Roles, useProtectedContext } from 'context/ProtectedContext';
 
 export const TopNav = () => {
   const { status, setStatus } = useAuth();
+  const { setCurrentRole } = useProtectedContext();
   const { isSearching, changeSearchState } = useSearch();
 
   const logout = () => {
     localStorage.removeItem(TLocalStorage.ACCESSTOKEN);
     setStatus(TAuthorizationStage.UNAUTHORIZED);
+    setCurrentRole(TUser_Roles.GUEST);
   };
 
   return (
