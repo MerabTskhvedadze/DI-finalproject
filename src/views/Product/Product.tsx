@@ -46,10 +46,10 @@ export default function Product() {
     <div className='min-h-screen'>
       <Breadcrumb items={breadcrumbItems} />
       <div className='grid grid-cols-8 gap-2 p-10 sm:p-4'>
-        <div className='col-span-8 sm:col-span-4 md:col-span-5 rounded bg-white py-4 w-full h-fit'>
+        <div className='col-span-8 lg:col-span-3 rounded bg-white py-4 w-full'>
           <ProductPreview images={data?.images ?? []} />
         </div>
-        <div className='col-span-8 sm:col-span-4 md:col-span-3 p-10 sm:p-4 bg-white divide-y divide-gray-400 rounded'>
+        <div className='flex flex-col justify-between col-span-8 lg:col-span-5 p-10 sm:p-4 bg-white rounded'>
           <ProductDetails
             title={data?.title}
             brand={data?.brand}
@@ -66,7 +66,7 @@ export default function Product() {
         <h1 className='text-2xl mx-3 my-2 font-medium capitalize'>
           Related products
         </h1>
-        <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3'>
+        <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
           <Suggestions brand={data?.brand} />
         </div>
       </div>

@@ -19,7 +19,7 @@ export function ProductDetails({
   const [showMore, setShowMore] = useState<boolean>(false);
 
   return (
-    <>
+    <div>
       <div className='mb-3'>
         <div className='text-xl xl:text-2xl font-medium mb-1'>{title}</div>
         <div className='text-sm xl:text-base mb-1'>
@@ -32,15 +32,17 @@ export function ProductDetails({
           ${price}
         </div>
       </div>
-      <div className='text-base xl:text-lg my-3 py-2'>
-        {!showMore ? description.slice(0, 600) + '...' : description}
+      <div className='my-3 py-2 border-t border-gray-300 max-h-[230px] overflow-auto'>
+        <span className='text-[1rem]'>
+          {!showMore ? description.slice(0, 600) + '...' : description}
+        </span>
         <span
-          className='cursor-pointer ml-2 text-sm italic text-gray-500'
+          className='cursor-pointer text-xs ml-2 italic text-gray-500'
           onClick={() => setShowMore((prev) => !prev)}
         >
           {!showMore ? 'more' : 'less'}
         </span>
       </div>
-    </>
+    </div>
   );
 }
