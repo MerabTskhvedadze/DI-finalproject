@@ -2,6 +2,7 @@ import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 import { useCart } from 'context/CartContext';
 import { TProduct } from 'types/TProducts';
+import { Image } from 'antd';
 
 type CardProps = {
   data: TProduct;
@@ -30,11 +31,7 @@ export const Card = ({ data }: CardProps) => {
           to={`/products/product/${data.id}`}
           className='h-[440px] bg-white z-30 m-3 select-none'
         >
-          <img
-            src={data.images[0]}
-            className='h-full w-full object-cover'
-            alt={data.title}
-          />
+          <Image src={data.images[0]} preview={false} alt={data.title} />
         </Link>
         <ShoppingCartIcon
           onClick={handleAddToCart}

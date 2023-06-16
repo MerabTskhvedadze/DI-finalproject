@@ -1,3 +1,4 @@
+import { Image } from 'antd';
 import { useState, useEffect } from 'react';
 
 export function ProductPreview({ images }: { images: string[] }) {
@@ -11,10 +12,10 @@ export function ProductPreview({ images }: { images: string[] }) {
 
   return (
     <>
-      <div className='w-full'>
-        <img className='m-auto h-[450px]' src={currentImage} alt='Product' />
+      <div className='flex justify-center'>
+        <Image src={currentImage} alt='Product' />
       </div>
-      <div className='flex flex-wrap p-5 gap-5'>
+      <div className='flex flex-wrap p-5 gap-5 max-h-[200px] overflow-auto'>
         {images.map((image: string, i: number) => (
           <img
             className='h-[90px] cursor-pointer border border-gray-100 rounded'
