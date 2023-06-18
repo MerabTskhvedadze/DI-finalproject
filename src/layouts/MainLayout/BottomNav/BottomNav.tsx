@@ -17,7 +17,8 @@ export const BottomNav = () => {
         <Link to='/contact-us' className='mx-4 hover:text-white'>
           Contact Us
         </Link>
-        {currentRole === TUser_Roles.USER && (
+        {(currentRole === TUser_Roles.USER ||
+          currentRole === TUser_Roles.ADMIN) && (
           <Link to='/settings' className='mx-4 hover:text-white'>
             Settings
           </Link>

@@ -51,11 +51,11 @@ export default function LogIn() {
   };
 
   return (
-    <>
+    <div className='w-fit mx-auto border border-gray-300 p-5'>
       <h1 className='mb-5 text-sm sm:text-lg font-bold text-gray-700 tracking-wider'>
         Sign in
       </h1>
       <LoginForm login={login} />
-    </>
+    </div>
   );
 }
