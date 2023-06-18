@@ -2,7 +2,7 @@ import { ContactUsForm } from './components/ContactUsForm';
 
 export default function ContactUs() {
   return (
-    <>
+    <div className='max-w-[600px] mx-auto border border-gray-300 p-5'>
       <h2 className='mb-6 text-4xl  tracking-tight font-extrabold text-center text-gray-700'>
         Contact Us
       </h2>
@@ -12,6 +12,6 @@ export default function ContactUs() {
         we'll get back to you as soon as possible
       </p>
       <ContactUsForm />
-    </>
+    </div>
   );
 }

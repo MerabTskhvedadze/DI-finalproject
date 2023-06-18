@@ -44,7 +44,11 @@ function App() {
           </Route>
         </Route>
 
-        <Route element={<ProtectedRoutes roles={[TUser_Roles.USER]} />}>
+        <Route
+          element={
+            <ProtectedRoutes roles={[TUser_Roles.USER, TUser_Roles.ADMIN]} />
+          }
+        >
           <Route element={<SideFeatureLayout />}>
             <Route path='/checkout' element={<Checkout />} />
             <Route path='/settings' element={<Settings />} />
