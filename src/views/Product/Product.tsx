@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { useTranslation } from 'react-i18next';
 import { animateScroll } from 'react-scroll/modules';
 import { public_axios } from 'utils/public_axios';
 
@@ -10,8 +11,9 @@ import { Button } from 'components/Button';
 import { ProductPreview, ProductDetails, Suggestions } from './components';
 
 export default function Product() {
-  const { id } = useParams();
+  const { t } = useTranslation('product');
   const { addToCart } = useCart();
+  const { id } = useParams();
 
   const { data, isError } = useQuery([id, 'product'], async () => {
     const response = await public_axios.get(`/product/${id}`);
@@ -23,9 +25,9 @@ export default function Product() {
   };
 
   const breadcrumbItems = [
-    { text: 'Home', url: '/' },
-    { text: 'Products', url: '/products' },
-    { text: `${data?.title}`, url: `/products/product:${id}` },
+    { text: t('home'), url: '/' },
+    { text: t('products'), url: '/products' },
+    { text: `${data?.title}` },
   ];
 
   useEffect(() => {
@@ -58,14 +60,12 @@ export default function Product() {
             price={data?.price}
           />
           <Button className='w-1/5 mx-auto' onClick={addToCartHandler}>
-            Add to cart
+            {t('addToCart')}
           </Button>
         </div>
       </div>
       <div>
-        <h1 className='text-2xl mx-3 my-2 font-medium capitalize'>
-          Related products
-        </h1>
+        <h1 className='text-2xl mx-3 my-2 font-medium'>{t('related')}</h1>
         <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
           <Suggestions brand={data?.brand} />
         </div>

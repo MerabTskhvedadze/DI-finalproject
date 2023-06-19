@@ -1,0 +1,11 @@
+{
+  "login": "Login",
+  "register": "Register",
+  "logout": "Logout",
+  "products": "Products",
+  "home": "Home",
+  "contact": "Contact us",
+  "settings": "Settings",
+  "admin": "Admin panel",
+  "productNotFound": "Products not found"
+}

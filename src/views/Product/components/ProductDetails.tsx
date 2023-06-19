@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Rate } from 'antd';
 import { useState } from 'react';
 
@@ -16,6 +17,7 @@ export function ProductDetails({
   description,
   price,
 }: ProductDetailsProps) {
+  const { t } = useTranslation('product');
   const [showMore, setShowMore] = useState<boolean>(false);
 
   return (
@@ -23,7 +25,7 @@ export function ProductDetails({
       <div className='mb-3'>
         <div className='text-xl xl:text-2xl font-medium mb-1'>{title}</div>
         <div className='text-sm xl:text-base mb-1'>
-          by <span className='text-blue-500'>{brand}</span>
+          {t('by')}: <span className='text-blue-500'>{brand}</span>
         </div>
         <div className='text-sm xl:text-base mb-1 text-blue-500'>
           <Rate disabled defaultValue={rating} /> rating
@@ -40,7 +42,7 @@ export function ProductDetails({
           className='cursor-pointer text-xs ml-2 italic text-gray-500'
           onClick={() => setShowMore((prev) => !prev)}
         >
-          {!showMore ? 'more' : 'less'}
+          {!showMore ? t('more') : t('less')}
         </span>
       </div>
     </div>

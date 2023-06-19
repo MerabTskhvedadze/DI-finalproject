@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
+import { useTranslation } from 'react-i18next';
 import { animateScroll } from 'react-scroll';
 import { Pagination, Select } from 'antd';
 
@@ -11,6 +12,7 @@ import { filteredOptions } from './utils/selectHelper';
 
 export default function Products() {
   const [page, setPage] = useState<number>(1);
+  const { t } = useTranslation('products');
   const [brandName, setBrandName] = useState<string>('Samsung');
   const itemsPerPage = 20;
   const skip = (page - 1) * itemsPerPage;
@@ -36,8 +38,8 @@ export default function Products() {
   };
 
   const breadcrumbItems = [
-    { text: 'Home', url: '/' },
-    { text: 'Products', url: '/products' },
+    { text: t('home'), url: '/' },
+    { text: t('products') },
   ];
 
   if (isError) {
@@ -57,6 +59,7 @@ export default function Products() {
       <div className='flex justify-between items-center'>
         <Breadcrumb items={breadcrumbItems} />
         <div className='w-[150px] mx-3 mt-3'>
+          <h1 className='ml-1 text-blue-500'>{t('filter')}</h1>
           <Select
             defaultValue={brandName}
             value={brandName}

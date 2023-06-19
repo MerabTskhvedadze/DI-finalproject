@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
+import { useTranslation } from 'react-i18next';
 import { message } from 'antd';
 
 import { public_axios } from 'utils/public_axios';
@@ -8,6 +9,7 @@ import { FormValues } from './types/FormValues';
 
 export default function Registration() {
   const navigate = useNavigate();
+  const { t } = useTranslation('register');
 
   const { mutate } = useMutation(
     async (values: FormValues) => {
@@ -29,9 +31,9 @@ export default function Registration() {
   };
 
   return (
-    <div className='w-fit mx-auto border border-gray-300 p-5'>
+    <div className='max-w-[400px] mx-auto border border-gray-300 p-5'>
       <h1 className='mb-5 text-sm sm:text-lg font-bold text-gray-700 tracking-wider'>
-        Sign Up
+        {t('register')}
       </h1>
       <RegistrationForm register={register} />
     </div>

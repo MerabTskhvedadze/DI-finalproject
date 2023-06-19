@@ -3,7 +3,7 @@ import { AuthProvider } from './AuthProvider';
 import { CartProvider } from './CartProvider';
 import { SearchProvider } from './SearchProvider';
 import { PropsWithChildren } from 'react';
-import { ProtectedProvider } from './ProtectedProvider';
+import { AccessProvider } from './AccessProvider';
 
 export const Providers = ({ children }: PropsWithChildren) => {
   return (
@@ -11,7 +11,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
       <CartProvider>
         <SearchProvider>
           <AuthProvider>
-            <ProtectedProvider>{children}</ProtectedProvider>
+            <AccessProvider>{children}</AccessProvider>
           </AuthProvider>
         </SearchProvider>
       </CartProvider>

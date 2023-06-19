@@ -1,4 +1,5 @@
 import { useCart } from 'context/CartContext';
+import { useTranslation } from 'react-i18next';
 import { Breadcrumb } from 'components/Breadcrumb';
 
 import {
@@ -9,6 +10,7 @@ import {
 import { CartButtons } from './components/CartButtons';
 
 export default function Cart() {
+  const { t } = useTranslation('cart');
   const {
     cart,
     totalPrice,
@@ -17,7 +19,7 @@ export default function Cart() {
     removeCartItem,
   } = useCart();
 
-  const breadcrumbItems = [{ text: 'Home', url: '/' }, { text: 'Cart' }];
+  const breadcrumbItems = [{ text: t('home'), url: '/' }, { text: t('cart') }];
 
   return (
     <>
@@ -26,13 +28,13 @@ export default function Cart() {
         <div className='flex flex-col w-full py-5 px-10 bg-gray-200 rounded-lg divide-y divide-gray-300'>
           <div className='mb-5 font-medium text-gray-700 flex justify-between items-center'>
             <h1>
-              Total price: <span className='text-blue-500'>${totalPrice}</span>
+              {t('total')}: <span className='text-blue-500'>${totalPrice}</span>
             </h1>
             <CartButtons />
           </div>
           {cart.items.length === 0 ? (
             <h1 className='text-center text-3xl text-red-500 italic'>
-              Cart is empty!
+              {t('empty')}
             </h1>
           ) : (
             cart.items.map(({ product, quantity }) => (
@@ -42,7 +44,7 @@ export default function Cart() {
                   <div>
                     <h1 className='font-medium'>{product.title}</h1>
                     <h2 className='font-medium text-gray-500'>
-                      By: {product.brand}
+                      {t('by')}: {product.brand}
                     </h2>
                     <p className='font-medium italic text-blue-500'>
                       ${product.price}
@@ -66,8 +68,10 @@ export default function Cart() {
                   </div>
                   <div className='mt-2 text-right font-medium'>
                     <p>
-                      Amount:
-                      <span className='ml-1 text-blue-500'>{quantity}</span>
+                      {t('quantity')}:
+                      <span className='ml-2 text-blue-500 text-xl'>
+                        {quantity}
+                      </span>
                     </p>
                   </div>
                 </div>

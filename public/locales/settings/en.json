@@ -1,0 +1,17 @@
+{
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "emailAddress": "Email Address",
+  "phoneNumber": "Phone Number",
+  "changeDetailsTitle": "Change user details",
+  "email": "Email",
+  "saveChanges": "Save changes",
+  "requiredFirstName": "Please enter your firstname!",
+  "requiredLastName": "Please enter your lastname!",
+  "requiredPhoneNumber": "Please enter your phone number!",
+  "validatePhoneNumber": "Please enter a valid phone number",
+  "requiredEmail": "Please enter your email!",
+  "validateEmail": "Please enter a valid email address!",
+  "details": "Details",
+  "changeDetails": "Change details"
+}

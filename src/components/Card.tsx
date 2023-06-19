@@ -1,5 +1,6 @@
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useCart } from 'context/CartContext';
 import { TProduct } from 'types/TProducts';
 import { Image } from 'antd';
@@ -9,6 +10,7 @@ type CardProps = {
 };
 
 export const Card = ({ data }: CardProps) => {
+  const { t } = useTranslation('card');
   const { addToCart } = useCart();
 
   const handleAddToCart = () => {
@@ -24,7 +26,7 @@ export const Card = ({ data }: CardProps) => {
         {data?.title.slice(0, 10)}...
       </Link>
       <div className='px-4 lg:py-2 text-xs italic text-gray-400'>
-        By <span>{data?.brand}</span>
+        {t('by')} <span>{data?.brand}</span>
       </div>
       <div className='h-[300px] m-4 relative'>
         <Link

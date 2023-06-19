@@ -1,9 +1,11 @@
+import { useTranslation } from 'react-i18next';
 import { Form, Input, message } from 'antd';
 import { Button } from 'components/Button';
 import { useMutation, useQueryClient } from 'react-query';
 import { private_axios } from 'utils/private_axios';
 
 export const ChangeDetails = () => {
+  const { t } = useTranslation('settings');
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
     async (values) => {
@@ -23,64 +25,64 @@ export const ChangeDetails = () => {
   return (
     <div className='bg-white overflow-hidden shadow rounded-lg border p-4'>
       <h1 className='mb-5 text-sm sm:text-lg font-bold text-gray-700 tracking-wider'>
-        Change user details
+        {t('changeDetailsTitle')}
       </h1>
       <Form name='registrationForm' onFinish={(values) => mutate(values)}>
         <Form.Item
-          label='Firstname'
+          label={t('firstName')}
           name='firstName'
           rules={[
             {
               required: true,
-              message: 'Please enter your firstname!',
+              message: t('requiredFirstName'),
             },
           ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          label='Lastname'
+          label={t('lastName')}
           name='lastName'
           rules={[
             {
               required: true,
-              message: 'Please enter your lastname!',
+              message: t('requiredLastName'),
             },
           ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          label='Phone Number'
+          label={t('phoneNumber')}
           name='phoneNumber'
           rules={[
-            { required: true, message: 'Please enter your phone number' },
+            { required: true, message: t('requiredPhoneNumber') },
             {
               pattern: /^\+(?:[0-9]?){6,14}[0-9]$/,
-              message: 'Please enter a valid phone number',
+              message: t('validatePhoneNumber'),
             },
           ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          label='Email'
+          label={t('emailAddress')}
           name='email'
           rules={[
             {
               required: true,
-              message: 'Please enter your email!',
+              message: t('requiredEmail'),
             },
             {
               type: 'email',
-              message: 'Please enter a valid email address!',
+              message: t('validateEmail'),
             },
           ]}
         >
           <Input />
         </Form.Item>
         <Form.Item>
-          <Button type='submit'>Save changes</Button>
+          <Button type='submit'>{t('saveChanges')}</Button>
         </Form.Item>
       </Form>
     </div>

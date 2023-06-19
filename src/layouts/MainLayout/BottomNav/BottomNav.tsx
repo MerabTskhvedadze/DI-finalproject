@@ -1,31 +1,45 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { LanguageDropdown } from './components/LanguageDropdown';
-import { TUser_Roles, useProtectedContext } from 'context/ProtectedContext';
+import { TUser_Roles, useAccessContext } from 'context/AccessContext';
 
 export const BottomNav = () => {
-  const { currentRole } = useProtectedContext();
+  const { currentRole } = useAccessContext();
+  const { t } = useTranslation('main');
 
   return (
     <nav className='bg-gray-700 text-gray-300 flex items-center justify-between py-[5px] px-[10px]'>
       <div>
-        <Link to='/' className='mx-4 hover:text-white'>
-          Home
+        <Link to='/' className=' mx-3 text-xs md:text-base hover:text-white'>
+          {t('home')}
         </Link>
-        <Link to='/products' className='mx-4 hover:text-white'>
-          Products
+        <Link
+          to='/products'
+          className=' mx-3 text-xs md:text-base hover:text-white'
+        >
+          {t('products')}
         </Link>
-        <Link to='/contact-us' className='mx-4 hover:text-white'>
-          Contact Us
+        <Link
+          to='/contact-us'
+          className=' mx-3 text-xs md:text-base hover:text-white'
+        >
+          {t('contact')}
         </Link>
         {(currentRole === TUser_Roles.USER ||
           currentRole === TUser_Roles.ADMIN) && (
-          <Link to='/settings' className='mx-4 hover:text-white'>
-            Settings
+          <Link
+            to='/settings'
+            className=' mx-3 text-xs md:text-base hover:text-white'
+          >
+            {t('settings')}
           </Link>
         )}
         {currentRole === TUser_Roles.ADMIN && (
-          <Link to='/admin-panel' className='mx-4 hover:text-white'>
-            Admin panel
+          <Link
+            to='/admin-panel'
+            className=' mx-3 text-xs md:text-base hover:text-white'
+          >
+            {t('admin')}
           </Link>
         )}
       </div>

@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { TUser_Roles } from 'context/ProtectedContext';
+import { TUser_Roles } from 'context/AccessContext';
 
 import { MainLayout, SideFeatureLayout } from 'layouts';
 import { ProtectedRoutes } from 'routes/ProtectedRoutes';

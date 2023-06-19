@@ -1,0 +1,10 @@
+{
+  "wellcome": "Wellcome back",
+  "error": "Email or Password is not correct",
+  "signin": "Sign in",
+  "email": "Email",
+  "requireEmail": "Please enter your email",
+  "password": "Passwond",
+  "requirePassword": "Please enter your password!",
+  "login": "Login"
+}

@@ -1,0 +1,23 @@
+{
+  "cardNum": "Card Number",
+  "requireNum": "Please enter a card number!",
+  "validateNum": "Please enter a valid card number!",
+  "expDate": "Expiration Date",
+  "requireExpData": "Please enter an expiration date!",
+  "validateExpDate": "Please enter a valid expiration date!",
+  "cvv": "CVV",
+  "firstName": "Firstname",
+  "requireFirstName": "Please enter your firstname!",
+  "lastName": "Lastname",
+  "requireLastName": "Please enter your lastname!",
+  "phoneNumber": "Phone Number",
+  "requirePhoneNumber": "Please enter your phone number!",
+  "validatePhoneNumber": "Please enter a valid phone number",
+  "email": "Email",
+  "requireEmail": "Please enter your email!",
+  "validateEmail": "Please enter a valid email address!",
+  "password": "Password",
+  "requirePassword": "Please enter a password!",
+  "validatePassword": "Password must be at least 6 characters long!",
+  "pay": "Pay"
+}
