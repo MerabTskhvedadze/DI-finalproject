@@ -1,0 +1,16 @@
+{
+  "firstName": "სახელი",
+  "lastName": "გვარი",
+  "emailAddress": "ელ-ფოსტა",
+  "phoneNumber": "ტელეფონის ნომერი",
+  "changeDetailsTitle": "მომხმარებლის დეტალების შეცვლა",
+  "saveChanges": "ცვლილებების შენახვა",
+  "requiredFirstName": "გთხოვთ შეიყვანოთ სახელი!",
+  "requiredLastName": "გთხოვთ შეიყვანოთ გვარი!",
+  "requiredPhoneNumber": "გთხოვთ შეიყვანოთ ტელეფონის ნომერი!",
+  "validatePhoneNumber": "გთხოვთ შეიყვანოთ სწორი ტელეფონის ნომერი!",
+  "requiredEmail": "გთხოვთ შეიყვანოთ ელ-ფოსტა!",
+  "validateEmail": "გთხოვთ შეიყვანოთ სწორი ელ-ფოსტა!",
+  "details": "დეტალები",
+  "changeDetails": "დეტალების შეცვლა"
+}

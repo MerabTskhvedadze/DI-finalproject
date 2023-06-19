@@ -1,10 +1,10 @@
 import { PropsWithChildren, useEffect, useState } from 'react';
-import { ProtectedContext, TUser_Roles } from 'context/ProtectedContext';
+import { AccessContext, TUser_Roles } from 'context/AccessContext';
 import jwt_decode from 'jwt-decode';
 
 import { TLocalStorage } from 'types/localstorage';
 
-export const ProtectedProvider = ({ children }: PropsWithChildren) => {
+export const AccessProvider = ({ children }: PropsWithChildren) => {
   const [pending, setPending] = useState<boolean>(true);
   const [currentRole, setCurrentRole] = useState<TUser_Roles>(
     TUser_Roles.GUEST
@@ -26,8 +26,8 @@ export const ProtectedProvider = ({ children }: PropsWithChildren) => {
   }, [token]);
 
   return (
-    <ProtectedContext.Provider value={{ pending, currentRole, setCurrentRole }}>
+    <AccessContext.Provider value={{ pending, currentRole, setCurrentRole }}>
       {children}
-    </ProtectedContext.Provider>
+    </AccessContext.Provider>
   );
 };

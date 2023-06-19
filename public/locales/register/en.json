@@ -1,0 +1,16 @@
+{
+  "firstName": "First Name",
+  "requireFirstName": "Please enter your first name!",
+  "lastName": "Last Name",
+  "requireLastName": "Please enter your last name!",
+  "phoneNumber": "Phone Number",
+  "requirePhoneNumber": "Please enter your phone number!",
+  "validatePhoneNumber": "Please enter a valid phone number!",
+  "email": "Email",
+  "requireEmail": "Please enter your email!",
+  "validateEmail": "Please enter a valid email address!",
+  "password": "Password",
+  "requirePassword": "Please enter a password!",
+  "validatePassword": "Password must be at least 6 characters long!",
+  "register": "Register"
+}

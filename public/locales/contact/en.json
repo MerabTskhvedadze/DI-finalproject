@@ -1,0 +1,8 @@
+{
+  "contact": "Contact us",
+  "message": "Have a question or need help? Let us know! Our team is always happy to assist you. Fill out the form below with your email and message, and we'll get back to you as soon as possible",
+  "requireMessage": "Please enter your message",
+  "requireName": "Please enter your name",
+  "requireEmail": "Please enter your email address",
+  "validateEmail": "Please enter a valid email address"
+}

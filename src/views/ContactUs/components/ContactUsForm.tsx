@@ -1,14 +1,16 @@
+import { useTranslation } from 'react-i18next';
 import { Form, Input, message } from 'antd';
 import { Button } from 'components/Button';
 
 export const ContactUsForm = () => {
+  const { t } = useTranslation('contact');
   const onFinish = () => message.success('Form submited');
 
   return (
     <Form name='contact-form' onFinish={onFinish}>
       <Form.Item
         name='name'
-        rules={[{ required: true, message: 'Please enter your name' }]}
+        rules={[{ required: true, message: t('requireName') }]}
       >
         <Input placeholder='Name' />
       </Form.Item>
@@ -16,8 +18,8 @@ export const ContactUsForm = () => {
       <Form.Item
         name='email'
         rules={[
-          { required: true, message: 'Please enter your email address' },
-          { type: 'email', message: 'Please enter a valid email address' },
+          { required: true, message: t('requireEmail') },
+          { type: 'email', message: t('validateEmail') },
         ]}
       >
         <Input placeholder='Email' />
@@ -25,7 +27,7 @@ export const ContactUsForm = () => {
 
       <Form.Item
         name='message'
-        rules={[{ required: true, message: 'Please enter your message' }]}
+        rules={[{ required: true, message: t('requireMessage') }]}
       >
         <Input.TextArea placeholder='Message' />
       </Form.Item>

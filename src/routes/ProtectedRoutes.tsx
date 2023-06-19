@@ -1,6 +1,6 @@
 import { PropsWithChildren, lazy } from 'react';
 import { Outlet } from 'react-router-dom';
-import { TUser_Roles, useProtectedContext } from 'context/ProtectedContext';
+import { TUser_Roles, useAccessContext } from 'context/AccessContext';
 
 import { Loading } from 'views/Loading';
 
@@ -13,7 +13,7 @@ type ProtectedRoutesProps = {
 export function ProtectedRoutes({
   roles,
 }: PropsWithChildren<ProtectedRoutesProps>) {
-  const { pending, currentRole } = useProtectedContext();
+  const { pending, currentRole } = useAccessContext();
 
   if (pending) {
     return <Loading />;

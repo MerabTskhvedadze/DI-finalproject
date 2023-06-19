@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { public_axios } from 'utils/public_axios';
+import { useTranslation } from 'react-i18next';
 import { TLocalStorage } from 'types/localstorage';
 
 import { TAuthorizationStage, useAuth } from 'context/AuthContext';
@@ -9,13 +10,14 @@ import { FormValues } from './types/FormValues';
 
 import { message } from 'antd';
 import { LoginForm } from './components/LoginForm';
-import { TUser_Roles, useProtectedContext } from 'context/ProtectedContext';
+import { TUser_Roles, useAccessContext } from 'context/AccessContext';
 import jwt_decode from 'jwt-decode';
 
 export default function LogIn() {
+  const { t } = useTranslation('login');
   const navigate = useNavigate();
   const { setStatus } = useAuth();
-  const { setCurrentRole } = useProtectedContext();
+  const { setCurrentRole } = useAccessContext();
 
   const { mutate } = useMutation(
     async (values: FormValues) => {
@@ -37,11 +39,11 @@ export default function LogIn() {
             setCurrentRole(TUser_Roles.USER);
           }
         }
-        message.success(`Wellcome back`);
+        message.success(`${t('wellcome')}`);
         navigate('/');
       },
       onError: () => {
-        message.error('Email or Password is not correct');
+        message.error(`${t('error')}`);
       },
     }
   );
@@ -53,7 +55,7 @@ export default function LogIn() {
   return (
     <div className='w-fit mx-auto border border-gray-300 p-5'>
       <h1 className='mb-5 text-sm sm:text-lg font-bold text-gray-700 tracking-wider'>
-        Sign in
+        {t('signin')}
       </h1>
       <LoginForm login={login} />
     </div>

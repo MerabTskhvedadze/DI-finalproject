@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Form, Input } from 'antd';
 import { Button } from 'components/Button';
 import { FormValues } from '../types/FormValues';
@@ -7,6 +8,7 @@ type RegistrationFormProps = {
 };
 
 export const RegistrationForm = ({ register }: RegistrationFormProps) => {
+  const { t } = useTranslation('register');
   const onFinish = (values: FormValues) => {
     register(values);
   };
@@ -14,76 +16,76 @@ export const RegistrationForm = ({ register }: RegistrationFormProps) => {
   return (
     <Form name='registrationForm' onFinish={onFinish}>
       <Form.Item
-        label='Firstname'
-        name='firstName'
+        label={t('firstName')}
+        name={t('firstName')}
         rules={[
           {
             required: true,
-            message: 'Please enter your firstname!',
+            message: t('requireFirstName'),
           },
         ]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        label='Lastname'
-        name='lastName'
+        label={t('lastName')}
+        name={t('lastName')}
         rules={[
           {
             required: true,
-            message: 'Please enter your lastname!',
+            message: t('requireLastName'),
           },
         ]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        label='Phone Number'
-        name='phoneNumber'
+        label={t('phoneNumber')}
+        name={t('phoneNumber')}
         rules={[
-          { required: true, message: 'Please enter your phone number' },
+          { required: true, message: t('requirePhoneNumber') },
           {
             pattern: /^\+(?:[0-9]?){6,14}[0-9]$/,
-            message: 'Please enter a valid phone number',
+            message: t('validatePhoneNumber'),
           },
         ]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        label='Email'
-        name='email'
+        label={t('email')}
+        name={t('email')}
         rules={[
           {
             required: true,
-            message: 'Please enter your email!',
+            message: t('requireEmail'),
           },
           {
             type: 'email',
-            message: 'Please enter a valid email address!',
+            message: t('validateEmail'),
           },
         ]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        label='Password'
-        name='password'
+        label={t('password')}
+        name={t('password')}
         rules={[
           {
             required: true,
-            message: 'Please enter a password!',
+            message: t('validatePassword'),
           },
           {
             min: 6,
-            message: 'Password must be at least 6 characters long!',
+            message: t('validatePassword'),
           },
         ]}
       >
         <Input.Password />
       </Form.Item>
       <Form.Item>
-        <Button type='submit'>Register</Button>
+        <Button type='submit'>{t('register')}</Button>
       </Form.Item>
     </Form>
   );

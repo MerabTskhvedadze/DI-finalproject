@@ -6,18 +6,18 @@ export enum TUser_Roles {
   ADMIN = 'admin',
 }
 
-type ProtectedContextValues = {
+type AccessContextValues = {
   pending: boolean;
   currentRole: TUser_Roles;
   setCurrentRole: React.Dispatch<SetStateAction<TUser_Roles>>;
 };
 
-export const ProtectedContext = createContext<
-  ProtectedContextValues | undefined
->(undefined);
+export const AccessContext = createContext<AccessContextValues | undefined>(
+  undefined
+);
 
-export const useProtectedContext = (): ProtectedContextValues => {
-  const context = useContext(ProtectedContext);
+export const useAccessContext = (): AccessContextValues => {
+  const context = useContext(AccessContext);
   if (!context) {
     throw new Error(
       'useProtectedContext must be used within a ProtectedProvider'

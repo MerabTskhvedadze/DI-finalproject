@@ -1,0 +1,10 @@
+{
+  "checkout": "Checkout",
+  "payment": "Please login/register before payment",
+  "total": "Total price",
+  "empty": "Cart is empty!",
+  "quantity": "Quantity",
+  "by": "By",
+  "home": "Home",
+  "cart": "Cart"
+}

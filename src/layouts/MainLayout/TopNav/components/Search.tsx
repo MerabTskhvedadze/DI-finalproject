@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import { useTranslation } from 'react-i18next';
 import { public_axios } from 'utils/public_axios';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
@@ -8,6 +9,7 @@ import { Button } from 'components/Button';
 import { TProduct } from 'types/TProducts';
 
 export const Search = () => {
+  const { t } = useTranslation('main');
   const { searchTerm, isSearching, changeSearchState, changeSearchTerm } =
     useSearch();
 
@@ -51,7 +53,7 @@ export const Search = () => {
           <div className='border overflow-auto max-h-96 min-h-[50px] border-gray-500 flex flex-col gap-4 text-xl rounded-sm w-full bg-white text-black absolute z-40'>
             {data?.products.length === 0 || searchTerm === '' ? (
               <p className='w-fit m-auto text-red-500 italic'>
-                Products not found
+                {t('productNotFound')}
               </p>
             ) : (
               data?.products?.map((product: TProduct) => (

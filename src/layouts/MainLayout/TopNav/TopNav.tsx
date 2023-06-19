@@ -9,11 +9,11 @@ import { Search } from './components/Search';
 import { Auth } from './components/Auth';
 
 import amazonImg from 'assets/images/amazon.png';
-import { TUser_Roles, useProtectedContext } from 'context/ProtectedContext';
+import { TUser_Roles, useAccessContext } from 'context/AccessContext';
 
 export const TopNav = () => {
   const { status, setStatus } = useAuth();
-  const { setCurrentRole } = useProtectedContext();
+  const { setCurrentRole } = useAccessContext();
   const { isSearching, changeSearchState } = useSearch();
 
   const logout = () => {
