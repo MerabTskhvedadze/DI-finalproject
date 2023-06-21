@@ -1,15 +1,18 @@
 import { ChangeEvent, useCallback, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { public_axios } from 'utils/public_axios';
 import { TProduct } from 'types/TProducts';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { Input, Pagination } from 'antd';
+import { useSessionStorage } from 'usehooks-ts';
 
 export default function AdminPanel() {
-  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useSessionStorage(
+    'currentPageAdminPanel',
+    1
+  );
   const itemsPerPage = 20;
   const skip = (currentPage - 1) * itemsPerPage;
 
@@ -64,6 +67,7 @@ export default function AdminPanel() {
                   <div>
                     <Link
                       to={`/products/product/${id}`}
+                      target='_blank'
                       className='font-medium hover:underline hover:text-blue-500'
                     >
                       {title}
@@ -74,10 +78,9 @@ export default function AdminPanel() {
                 </div>
                 <div className='ml-5'>
                   <div className='flex items-start justify-end select-none divide-x divide-gray-300'>
-                    <PencilSquareIcon
-                      onClick={() => navigate(`edit/${id}`)}
-                      className='h-[25px] px-1 cursor-pointer text-blue-400 hover:text-blue-500'
-                    />
+                    <Link to={`edit/${id}`}>
+                      <PencilSquareIcon className='h-[25px] px-1 cursor-pointer text-blue-400 hover:text-blue-500' />
+                    </Link>
                     <TrashIcon
                       onClick={() => console.log(id)}
                       className='h-[25px] px-1 cursor-pointer text-blue-400 hover:text-blue-500'

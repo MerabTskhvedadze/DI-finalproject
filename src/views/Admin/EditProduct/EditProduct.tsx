@@ -1,12 +1,14 @@
-import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Button, Upload, Image, Form, Input } from 'antd';
-import { UploadOutlined, DeleteFilled } from '@ant-design/icons';
 import { public_axios } from 'utils/public_axios';
+import { private_axios } from 'utils/private_axios';
+
 import { Button as SubmitButton } from 'components/Button';
+import { Button, Upload, Image, Form, Input, message } from 'antd';
+import { UploadOutlined, DeleteFilled } from '@ant-design/icons';
 
 type TInitialValues = {
   title: string;
@@ -16,6 +18,8 @@ type TInitialValues = {
   price: number;
   amount: number;
   rating: number;
+  id?: string;
+  images?: string[];
 };
 
 type TImage = {
@@ -24,11 +28,36 @@ type TImage = {
 };
 
 function EditProduct() {
-  const { id } = useParams();
-  const { data, isError } = useQuery(['editProduct', id], async () => {
-    const response = await public_axios.get(`/product/${id}`);
+  const { id: productId } = useParams();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  //get product
+  const { data, isError } = useQuery(['editProduct', productId], async () => {
+    const response = await public_axios.get(`/product/${productId}`);
     return response.data;
   });
+
+  //update product
+  const { mutate } = useMutation(
+    async (values: TInitialValues) => {
+      try {
+        await private_axios.put(`/product/${productId}`, values);
+      } catch (error: any) {
+        return error;
+      }
+    },
+    {
+      onSuccess: () => {
+        message.success('Product Updated');
+        queryClient.invalidateQueries();
+        navigate('/admin-panel');
+      },
+      onError: (error: any) => {
+        message.error(error.response.data);
+      },
+    }
+  );
 
   const [fileList, setFileList] = useState<TImage[]>(() =>
     data?.images.map((url: string) => ({ id: uuidv4(), url }))
@@ -57,24 +86,49 @@ function EditProduct() {
     reader.readAsDataURL(file);
   };
 
+  const handleFileDelete = (id: string) => {
+    const updatedList = fileList.filter((file) => file.id !== id);
+    setFileList(updatedList);
+  };
+
   const handleSubmit = (values: TInitialValues) => {
     const updatedValues = {
       ...values,
       images: fileList.map((item) => item.url),
+      id: productId,
     };
-    console.log(updatedValues);
-  };
-
-  const handleFileDelete = (id: string) => {
-    const updatedList = fileList.filter((file) => file.id !== id);
-    setFileList(updatedList);
+    mutate(updatedValues);
   };
 
   if (isError) {
     return <h1>Oops! something went wrong</h1>;
   }
   return (
-    <div className='flex flex-col gap-10 lg:flex-row px-10 max-w-[1100px] m-auto'>
+    <div className='flex flex-col gap-10 px-10 max-w-[1100px] m-auto'>
+      <div className='max-w-[600px]  w-full mx-auto'>
+        <div className='flex flex-wrap max-h-[300px] overflow-auto gap-1 mb-3'>
+          {fileList.map((item) => (
+            <div key={item.id} className='relative flex'>
+              <Image
+                className='rounded-lg border border-gray-300'
+                src={item.url}
+                width={80}
+                height={80}
+              />
+              <DeleteFilled
+                onClick={() => handleFileDelete(item.id)}
+                className='absolute w-5 h-5 cursor-pointer top-1 left-0 text-red-500 hover:text-red-300'
+              />
+            </div>
+          ))}
+        </div>
+        <Upload beforeUpload={handleFileChange} showUploadList={false}>
+          <Button icon={<UploadOutlined />} className='flex items-center mb-2'>
+            Select Image
+          </Button>
+        </Upload>
+      </div>
+
       <Form
         initialValues={initialValues}
         onFinish={handleSubmit}
@@ -88,6 +142,10 @@ function EditProduct() {
             {
               required: true,
               message: 'Amount is required',
+            },
+            {
+              pattern: /^\d*\.?\d+$/,
+              message: 'Please enter a valid number',
             },
           ]}
         >
@@ -106,12 +164,12 @@ function EditProduct() {
           <Input />
         </Form.Item>
         <Form.Item
-          label='Model'
+          label='Title'
           name='title'
           rules={[
             {
               required: true,
-              message: 'Model is required',
+              message: 'Title is required',
             },
           ]}
         >
@@ -149,36 +207,16 @@ function EditProduct() {
               required: true,
               message: 'Price is required',
             },
+            {
+              pattern: /^\d*\.?\d+$/,
+              message: 'Please enter a valid number',
+            },
           ]}
         >
           <Input />
         </Form.Item>
         <SubmitButton type='submit'>Submit</SubmitButton>
       </Form>
-
-      <div className='max-w-[600px]  w-full mx-auto'>
-        <div className='flex flex-wrap max-h-[300px] overflow-auto gap-1 mb-3'>
-          {fileList.map((item) => (
-            <div key={item.id} className='relative flex'>
-              <Image
-                className='rounded-lg border border-gray-300'
-                src={item.url}
-                width={100}
-                height={100}
-              />
-              <DeleteFilled
-                onClick={() => handleFileDelete(item.id)}
-                className='absolute w-5 h-5 cursor-pointer top-1 left-0 text-red-500 hover:text-red-300'
-              />
-            </div>
-          ))}
-        </div>
-        <Upload beforeUpload={handleFileChange} showUploadList={false}>
-          <Button icon={<UploadOutlined />} className='flex items-center mb-2'>
-            Select Image
-          </Button>
-        </Upload>
-      </div>
     </div>
   );
 }
