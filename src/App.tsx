@@ -17,6 +17,9 @@ const Products = lazy(() => import('views/Products'));
 const Cart = lazy(() => import('views/Cart'));
 const Checkout = lazy(() => import('views/Checkout'));
 const SearchResult = lazy(() => import('views/SearchResults'));
+const AdminPanel = lazy(() => import('views/Admin/AdminPanel'));
+const EditProduct = lazy(() => import('views/Admin/EditProduct'));
+const CreateProduct = lazy(() => import('views/Admin/CreateProduct'));
 
 function App() {
   return (
@@ -52,6 +55,14 @@ function App() {
           <Route element={<SideFeatureLayout />}>
             <Route path='/checkout' element={<Checkout />} />
             <Route path='/settings' element={<Settings />} />
+          </Route>
+        </Route>
+
+        <Route element={<ProtectedRoutes roles={[TUser_Roles.ADMIN]} />}>
+          <Route element={<SideFeatureLayout />}>
+            <Route path='/admin-panel' element={<AdminPanel />} />
+            <Route path='/admin-panel/edit/:id' element={<EditProduct />} />
+            <Route path='admin-panel/create' element={<CreateProduct />} />
           </Route>
         </Route>
 

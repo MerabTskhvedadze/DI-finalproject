@@ -9,13 +9,18 @@ import { Breadcrumb } from 'components/Breadcrumb';
 import { TProduct } from 'types/TProducts';
 import { public_axios } from 'utils/public_axios';
 import { filteredOptions } from './utils/selectHelper';
+import { useSessionStorage } from 'usehooks-ts';
 
 export default function Products() {
-  const [page, setPage] = useState<number>(1);
   const { t } = useTranslation('products');
   const [brandName, setBrandName] = useState<string>('Samsung');
+
+  const [currentPage, setCurrentPage] = useSessionStorage(
+    'currentPageProducts',
+    1
+  );
   const itemsPerPage = 20;
-  const skip = (page - 1) * itemsPerPage;
+  const skip = (currentPage - 1) * itemsPerPage;
 
   const { data, isError } = useQuery(
     [skip, brandName, 'products'],
@@ -30,7 +35,7 @@ export default function Products() {
   );
 
   const pageHandler = (page: number) => {
-    setPage(page);
+    setCurrentPage(page);
     animateScroll.scrollToTop({
       duration: 1500,
       smooth: 'easeInOutQuart',
@@ -52,6 +57,7 @@ export default function Products() {
 
   const handleBrandChange = (value: string) => {
     setBrandName(value);
+    setCurrentPage(1);
   };
 
   return (
@@ -81,8 +87,8 @@ export default function Products() {
       </div>
       <Pagination
         className='m-auto my-5 w-fit'
-        defaultCurrent={page}
-        current={page}
+        defaultCurrent={currentPage}
+        current={currentPage}
         defaultPageSize={itemsPerPage}
         showSizeChanger={false}
         total={data?.total_found}
