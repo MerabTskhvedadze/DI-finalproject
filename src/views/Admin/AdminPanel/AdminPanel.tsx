@@ -6,6 +6,7 @@ import { TProduct } from 'types/TProducts';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { Input, Pagination } from 'antd';
 import { useSessionStorage } from 'usehooks-ts';
+import { Button } from 'components/Button';
 
 export default function AdminPanel() {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -50,13 +51,14 @@ export default function AdminPanel() {
   return (
     <>
       <div className='px-5 lg:px-32 pt-5'>
-        <div className='flex justify-center mb-5'>
+        <div className='flex justify-center items-center gap-5 mb-5'>
           <Input
             type='text'
             placeholder={`search`}
             onChange={handleOnChange}
-            className='w-[300px]'
+            className='w-[300px] h-[35px]'
           />
+          <Button to={'create'}>Add Product</Button>
         </div>
         <div className='flex flex-col w-full py-5 px-10 bg-gray-200 rounded-lg divide-y divide-gray-300'>
           {data?.products.map(
