@@ -1,14 +1,16 @@
 import { ChangeEvent, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { public_axios } from 'utils/public_axios';
 import { TProduct } from 'types/TProducts';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
-import { Input, Pagination } from 'antd';
+import { Input, Pagination, message } from 'antd';
 import { useSessionStorage } from 'usehooks-ts';
 import { Button } from 'components/Button';
+import { private_axios } from 'utils/private_axios';
 
 export default function AdminPanel() {
+  const queryClient = useQueryClient();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [currentPage, setCurrentPage] = useSessionStorage(
     'currentPageAdminPanel',
@@ -29,6 +31,25 @@ export default function AdminPanel() {
     },
     {
       suspense: false,
+    }
+  );
+
+  const { mutate } = useMutation(
+    async (id: number) => {
+      try {
+        await private_axios.delete(`/product/${id}`);
+      } catch (error) {
+        return error;
+      }
+    },
+    {
+      onSuccess: () => {
+        message.success('Product Deleted');
+        queryClient.invalidateQueries();
+      },
+      onError: () => {
+        message.error('Oops! something went wrong');
+      },
     }
   );
 
@@ -84,7 +105,7 @@ export default function AdminPanel() {
                       <PencilSquareIcon className='h-[25px] px-1 cursor-pointer text-blue-400 hover:text-blue-500' />
                     </Link>
                     <TrashIcon
-                      onClick={() => console.log(id)}
+                      onClick={() => mutate(id)}
                       className='h-[25px] px-1 cursor-pointer text-blue-400 hover:text-blue-500'
                     />
                   </div>
