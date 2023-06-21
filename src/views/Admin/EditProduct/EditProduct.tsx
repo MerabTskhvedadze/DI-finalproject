@@ -104,11 +104,11 @@ function EditProduct() {
     return <h1>Oops! something went wrong</h1>;
   }
   return (
-    <div className='flex flex-col gap-10 px-10 max-w-[1100px] m-auto'>
-      <div className='max-w-[600px]  w-full mx-auto'>
-        <div className='flex flex-wrap max-h-[300px] overflow-auto gap-1 mb-3'>
+    <div className='flex flex-col gap-5 m-auto py-5 px-10 min-w-[600px] w-fit bg-gray-100  border border-gray-300 rounded-lg'>
+      <div className='max-w-[500px]'>
+        <div className='flex flex-wrap justify-center max-h-[300px] overflow-auto gap-1 mb-3'>
           {fileList.map((item) => (
-            <div key={item.id} className='relative flex'>
+            <div key={item.id} className='relative'>
               <Image
                 className='rounded-lg border border-gray-300'
                 src={item.url}
