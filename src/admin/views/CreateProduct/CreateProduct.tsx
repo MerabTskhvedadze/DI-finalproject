@@ -4,9 +4,9 @@ import { useMutation, useQueryClient } from 'react-query';
 import { message } from 'antd';
 
 import { private_axios } from 'utils/private_axios';
-import { AdminForm } from '../components/Form';
-import { TFormValues, TImage } from '../types/TFormValues';
-import { ImageUploader } from '../components/ImageUploader';
+import { AdminForm } from '../../components/Form';
+import { TFormValues, TImage } from '../../types/TFormValues';
+import { ImageUploader } from '../../components/ImageUploader';
 
 export default function CreateProduct() {
   const navigate = useNavigate();

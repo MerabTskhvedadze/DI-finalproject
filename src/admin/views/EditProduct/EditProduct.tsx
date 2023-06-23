@@ -7,9 +7,9 @@ import { public_axios } from 'utils/public_axios';
 import { private_axios } from 'utils/private_axios';
 
 import { message } from 'antd';
-import { TFormValues, TImage } from '../types/TFormValues';
-import { AdminForm } from '../components/Form';
-import { ImageUploader } from '../components/ImageUploader';
+import { TFormValues, TImage } from '../../types/TFormValues';
+import { AdminForm } from '../../components/Form';
+import { ImageUploader } from '../../components/ImageUploader';
 
 function EditProduct() {
   const { id: productId } = useParams();
