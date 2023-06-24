@@ -10,6 +10,7 @@ import { message } from 'antd';
 import { TFormValues, TImage } from '../../types/TFormValues';
 import { AdminForm } from '../../components/Form';
 import { ImageUploader } from '../../components/ImageUploader';
+import { ReturnButton } from 'admin/components/ReturnButton';
 
 function EditProduct() {
   const { id: productId } = useParams();
@@ -52,6 +53,7 @@ function EditProduct() {
   }
   return (
     <div className='flex flex-col gap-5 m-auto py-5 px-10 min-w-[600px] w-fit bg-gray-100  border border-gray-300 rounded-lg'>
+      <ReturnButton />
       <ImageUploader fileList={fileList} setFileList={setFileList} />
       <AdminForm
         initialValues={{

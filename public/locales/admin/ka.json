@@ -1,0 +1,19 @@
+{
+  "amountLabel": "რაოდენობა",
+  "amountRequiredMessage": "რაოდენობა აუცილებელია",
+  "amountInvalidMessage": "გთხოვთ, შეიყვანოთ სწორი რიცხვი",
+  "brandLabel": "ბრენდი",
+  "brandRequiredMessage": "ბრენდი აუცილებელია",
+  "titleLabel": "სათაური",
+  "titleRequiredMessage": "სათაური აუცილებელია",
+  "categoryLabel": "კატეგორია",
+  "categoryRequiredMessage": "კატეგორია აუცილებელია",
+  "descriptionLabel": "აღწერა",
+  "descriptionRequiredMessage": "აღწერა აუცილებელია",
+  "priceLabel": "ფასი",
+  "priceRequiredMessage": "ფასი აუცილებელია",
+  "priceInvalidMessage": "გთხოვთ, შეიყვანოთ სწორი რიცხვი",
+  "search": "ძიება",
+  "addProduct": "პროდუქტის დამატება",
+  "save": "შენახვა"
+}

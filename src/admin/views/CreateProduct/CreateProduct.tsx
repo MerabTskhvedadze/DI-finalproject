@@ -7,6 +7,7 @@ import { private_axios } from 'utils/private_axios';
 import { AdminForm } from '../../components/Form';
 import { TFormValues, TImage } from '../../types/TFormValues';
 import { ImageUploader } from '../../components/ImageUploader';
+import { ReturnButton } from 'admin/components/ReturnButton';
 
 export default function CreateProduct() {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ export default function CreateProduct() {
   return (
     <>
       <div className='flex flex-col gap-5 m-auto py-5 px-10 min-w-[600px] w-fit bg-gray-100  border border-gray-300 rounded-lg'>
+        <ReturnButton />
         <ImageUploader fileList={fileList} setFileList={setFileList} />
         <AdminForm handleSubmit={handleSubmit} />
       </div>

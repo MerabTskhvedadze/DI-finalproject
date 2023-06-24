@@ -1,16 +1,19 @@
 import { ChangeEvent, useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { public_axios } from 'utils/public_axios';
-import { TProduct } from 'types/TProducts';
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
-import { Input, Pagination, message } from 'antd';
 import { useSessionStorage } from 'usehooks-ts';
-import { Button } from 'components/Button';
+import { Input, Pagination, message } from 'antd';
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
+
+import { public_axios } from 'utils/public_axios';
 import { private_axios } from 'utils/private_axios';
+import { TProduct } from 'types/TProducts';
+import { Button } from 'components/Button';
+import { useTranslation } from 'react-i18next';
 
 export default function AdminPanel() {
   const queryClient = useQueryClient();
+  const { t } = useTranslation('admin');
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [currentPage, setCurrentPage] = useSessionStorage(
     'currentPageAdminPanel',
@@ -34,24 +37,15 @@ export default function AdminPanel() {
     }
   );
 
-  const { mutate } = useMutation(
-    async (id: number) => {
-      try {
-        await private_axios.delete(`/product/${id}`);
-      } catch (error) {
-        return error;
-      }
-    },
-    {
-      onSuccess: () => {
-        message.success('Product Deleted');
-        queryClient.invalidateQueries();
-      },
-      onError: () => {
-        message.error('Oops! something went wrong');
-      },
+  const { mutateAsync } = useMutation(async (id: number) => {
+    try {
+      await private_axios.delete(`/product/${id}`);
+      message.success('Product Deleted');
+      queryClient.invalidateQueries();
+    } catch (error) {
+      message.error('Oops! something went wrong');
     }
-  );
+  });
 
   const handlePageChange = useCallback((page: number) => {
     setCurrentPage(page);
@@ -75,11 +69,11 @@ export default function AdminPanel() {
         <div className='flex justify-center items-center gap-5 mb-5'>
           <Input
             type='text'
-            placeholder={`search`}
+            placeholder={t('search')}
             onChange={handleOnChange}
             className='w-[300px] h-[35px]'
           />
-          <Button to={'create'}>Add Product</Button>
+          <Button to={'create'}>{t('addProduct')}</Button>
         </div>
         <div className='flex flex-col w-full py-5 px-10 bg-gray-200 rounded-lg divide-y divide-gray-300'>
           {data?.products.map(
@@ -105,7 +99,7 @@ export default function AdminPanel() {
                       <PencilSquareIcon className='h-[25px] px-1 cursor-pointer text-blue-400 hover:text-blue-500' />
                     </Link>
                     <TrashIcon
-                      onClick={() => mutate(id)}
+                      onClick={async () => await mutateAsync(id)}
                       className='h-[25px] px-1 cursor-pointer text-blue-400 hover:text-blue-500'
                     />
                   </div>

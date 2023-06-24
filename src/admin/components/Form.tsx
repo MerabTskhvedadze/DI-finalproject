@@ -1,4 +1,5 @@
 import { Input, Form } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { Button } from 'components/Button';
 import { TFormValues } from '../types/TFormValues';
 
@@ -8,6 +9,8 @@ type AdminFormProps = {
 };
 
 export const AdminForm = ({ handleSubmit, initialValues }: AdminFormProps) => {
+  const { t } = useTranslation('admin');
+
   return (
     <Form
       onFinish={handleSubmit}
@@ -16,86 +19,88 @@ export const AdminForm = ({ handleSubmit, initialValues }: AdminFormProps) => {
       initialValues={initialValues}
     >
       <Form.Item
-        label='Amount'
+        label={t('amountLabel')}
         name='amount'
         rules={[
           {
             required: true,
-            message: 'Amount is required',
+            message: t('amountRequiredMessage'),
           },
           {
             pattern: /^\d*\.?\d+$/,
-            message: 'Please enter a valid number',
+            message: t('amountInvalidMessage'),
           },
         ]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        label='Brand'
+        label={t('brandLabel')}
         name='brand'
         rules={[
           {
             required: true,
-            message: 'Brand is required',
+            message: t('brandRequiredMessage'),
           },
         ]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        label='Title'
+        label={t('titleLabel')}
         name='title'
         rules={[
           {
             required: true,
-            message: 'Title is required',
+            message: t('titleRequiredMessage'),
           },
         ]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        label='Category'
+        label={t('categoryLabel')}
         name='category'
         rules={[
           {
             required: true,
-            message: 'Category is required',
+            message: t('categoryRequiredMessage'),
           },
         ]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        label='Description'
+        label={t('descriptionLabel')}
         name='description'
         rules={[
           {
             required: true,
-            message: 'Description is required',
+            message: t('descriptionRequiredMessage'),
           },
         ]}
       >
         <Input.TextArea style={{ minHeight: '150px' }} />
       </Form.Item>
       <Form.Item
-        label='Price'
+        label={t('priceLabel')}
         name='price'
         rules={[
           {
             required: true,
-            message: 'Price is required',
+            message: t('priceRequiredMessage'),
           },
           {
             pattern: /^\d*\.?\d+$/,
-            message: 'Please enter a valid number',
+            message: t('priceInvalidMessage'),
           },
         ]}
       >
         <Input />
       </Form.Item>
-      <Button type='submit'>Create</Button>
+      <Button type='submit' className='mt-7'>
+        {t('save')}
+      </Button>
     </Form>
   );
 };
