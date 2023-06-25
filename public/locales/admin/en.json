@@ -1,0 +1,19 @@
+{
+  "amountLabel": "Amount",
+  "amountRequiredMessage": "Amount is required",
+  "amountInvalidMessage": "Please enter a valid number",
+  "brandLabel": "Brand",
+  "brandRequiredMessage": "Brand is required",
+  "titleLabel": "Title",
+  "titleRequiredMessage": "Title is required",
+  "categoryLabel": "Category",
+  "categoryRequiredMessage": "Category is required",
+  "descriptionLabel": "Description",
+  "descriptionRequiredMessage": "Description is required",
+  "priceLabel": "Price",
+  "priceRequiredMessage": "Price is required",
+  "priceInvalidMessage": "Please enter a valid number",
+  "search": "Search",
+  "addProduct": "Add product",
+  "save": "Save"
+}

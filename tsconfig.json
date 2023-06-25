@@ -10,7 +10,8 @@
       "providers/*": ["providers/*"],
       "utils/*": ["utils/*"],
       "types/*": ["types/*"],
-      "routes/*": ["routes/*"]
+      "routes/*": ["routes/*"],
+      "admin/*": ["admin/*"]
     },
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

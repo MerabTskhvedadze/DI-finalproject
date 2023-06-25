@@ -37,6 +37,7 @@ export const Search = () => {
             className='px-4 flex-grow h-full rounded-l text-lg text-black'
             type='text'
             value={searchTerm}
+            placeholder={t('search')}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               changeSearchTerm(e.target.value)
             }

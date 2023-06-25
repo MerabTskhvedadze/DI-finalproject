@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { animateScroll } from 'react-scroll';
 import { useQuery } from 'react-query';
+import { useTranslation } from 'react-i18next';
 import { Pagination } from 'antd';
 
 import { public_axios } from 'utils/public_axios';
@@ -10,6 +11,7 @@ import { Card } from 'components/Card';
 import { Breadcrumb } from 'components/Breadcrumb';
 
 export default function SearchResults() {
+  const { t } = useTranslation('searchresults');
   const [page, setPage] = useState<number>(1);
   const itemsPerPage = 20;
   const skip = (page - 1) * itemsPerPage;
@@ -36,8 +38,8 @@ export default function SearchResults() {
   );
 
   const breadcrumbItems = [
-    { text: 'Home', url: '/' },
-    { text: 'Search results' },
+    { text: t('home'), url: '/' },
+    { text: t('results') },
   ];
 
   if (isError) {
