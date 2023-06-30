@@ -1,11 +1,11 @@
 import { SetStateAction, Dispatch } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Button, Upload, Image } from 'antd';
+import { Button, Upload, Image, message } from 'antd';
 import { UploadOutlined, DeleteFilled } from '@ant-design/icons';
 
 import { TImage } from '../types/TFormValues';
 
-type TImapeUploaderProps = {
+type TImageUploaderProps = {
   fileList: TImage[];
   setFileList: Dispatch<SetStateAction<TImage[]>>;
 };
@@ -13,7 +13,7 @@ type TImapeUploaderProps = {
 export const ImageUploader = ({
   fileList,
   setFileList,
-}: TImapeUploaderProps) => {
+}: TImageUploaderProps) => {
   const handleFileChange = (file: File) => {
     const reader = new FileReader();
     reader.onload = (e: ProgressEvent<FileReader>) => {
@@ -30,6 +30,15 @@ export const ImageUploader = ({
   const handleFileDelete = (id: string) => {
     const updatedList = fileList.filter((file) => file.id !== id);
     setFileList(updatedList);
+  };
+
+  const beforeUpload = (file: File) => {
+    if (file.type.startsWith('image/')) {
+      handleFileChange(file);
+    } else {
+      message.warning('Only image files are allowed.');
+    }
+    return false; // Prevent default upload behavior
   };
 
   return (
@@ -50,7 +59,7 @@ export const ImageUploader = ({
           </div>
         ))}
       </div>
-      <Upload beforeUpload={handleFileChange} showUploadList={false}>
+      <Upload beforeUpload={beforeUpload} showUploadList={false}>
         <Button icon={<UploadOutlined />} className='flex items-center mb-2'>
           Select Image
         </Button>
