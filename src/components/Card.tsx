@@ -18,7 +18,7 @@ export const Card = ({ data }: CardProps) => {
   };
 
   return (
-    <div className='h-[440px] bg-white z-30 m-3 p-3 select-none'>
+    <div className='relative bg-white z-30 m-3 p-3 select-none'>
       <Link
         className='text-lg xl:text-xl font-semibold ml-4 mt-4 hover:underline hover:text-blue-500'
         to={`/products/product/${data.id}`}
@@ -28,10 +28,10 @@ export const Card = ({ data }: CardProps) => {
       <div className='px-4 lg:py-2 text-xs italic text-gray-400'>
         {t('by')} <span>{data?.brand}</span>
       </div>
-      <div className='h-[300px] m-4 relative'>
+      <div className=' m-4 relative'>
         <Link
           to={`/products/product/${data.id}`}
-          className='h-[440px] bg-white z-30 m-3 select-none'
+          className=' bg-white z-30 m-3 select-none'
         >
           <Image src={data.images[0]} preview={false} alt={data.title} />
         </Link>
@@ -40,7 +40,9 @@ export const Card = ({ data }: CardProps) => {
           className='h-[25px] lg:h-[30px] absolute z-50 right-[10px] -top-4 md:-top-3 bg-blue-300 rounded-[100%] p-1 cursor-pointer'
         />
       </div>
-      <span className='px-4 italic font-mono'>{data.price}$</span>
+      <span className='absolute bottom-2 px-4 font-medium text-blue-500'>
+        {data.price}$
+      </span>
     </div>
   );
 };

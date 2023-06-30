@@ -7,20 +7,15 @@ import { private_axios } from 'utils/private_axios';
 export const ChangeDetails = () => {
   const { t } = useTranslation('settings');
   const queryClient = useQueryClient();
-  const { mutate } = useMutation(
-    async (values) => {
+  const { mutate } = useMutation(async (values) => {
+    try {
       await private_axios.post('/user', values);
       queryClient.invalidateQueries('profile');
-    },
-    {
-      onSuccess: () => {
-        message.success('Saved successfully');
-      },
-      onError: () => {
-        message.error('Oops! something went wrong');
-      },
+      message.success('Saved successfully');
+    } catch {
+      message.error('Oops! something went wrong');
     }
-  );
+  });
 
   return (
     <div className='bg-white overflow-hidden shadow rounded-lg border p-4'>

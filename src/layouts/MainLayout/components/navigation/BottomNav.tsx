@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { LanguageDropdown } from './components/LanguageDropdown';
+import { LanguageDropdown } from '../LanguageDropdown';
 import { TUser_Roles, useAccessContext } from 'context/AccessContext';
 
 export const BottomNav = () => {
@@ -8,7 +8,7 @@ export const BottomNav = () => {
   const { t } = useTranslation('main');
 
   return (
-    <nav className='bg-gray-700 text-gray-300 flex items-center justify-between py-[5px] px-[10px]'>
+    <nav className=' bg-amazon-light_blue text-gray-300 flex items-center justify-between py-[5px] px-[10px]'>
       <div>
         <Link to='/' className=' mx-3 text-xs md:text-base hover:text-white'>
           {t('home')}

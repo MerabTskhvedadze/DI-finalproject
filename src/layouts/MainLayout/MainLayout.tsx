@@ -1,8 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
-import { Container } from './components';
-import { BottomNav } from './BottomNav/BottomNav';
-import { TopNav } from './TopNav/TopNav';
+import { TopNav, BottomNav } from './components/navigation';
+import { Footer } from './components/Footer';
 
 export const MainLayout = () => {
   return (
@@ -11,9 +10,10 @@ export const MainLayout = () => {
         <TopNav />
         <BottomNav />
       </header>
-      <Container>
+      <div className='min-h-screen min-w-[700px] max-w-[1500px] mx-auto mb-10'>
         <Outlet />
-      </Container>
+      </div>
+      <Footer />
     </>
   );
 };
