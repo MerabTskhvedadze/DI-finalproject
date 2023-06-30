@@ -1,15 +1,15 @@
-import { ChangeEvent, useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { useSessionStorage } from 'usehooks-ts';
-import { Input, Pagination, message } from 'antd';
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/solid';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { ChangeEvent, useCallback, useState } from 'react';
+import { Input, Pagination, Modal, message } from 'antd';
+import { useSessionStorage } from 'usehooks-ts';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-import { public_axios } from 'utils/public_axios';
 import { private_axios } from 'utils/private_axios';
+import { public_axios } from 'utils/public_axios';
 import { TProduct } from 'types/TProducts';
 import { Button } from 'components/Button';
-import { useTranslation } from 'react-i18next';
 import { Image } from 'components/Image';
 
 export default function AdminPanel() {
@@ -57,6 +57,19 @@ export default function AdminPanel() {
     setCurrentPage(1);
   }, []);
 
+  const handleDelete = (id: number) => {
+    Modal.confirm({
+      okButtonProps: {
+        className: 'bg-blue-500',
+      },
+      title: 'Confirm deletion',
+      content: 'Are you sure you want to delete this item?',
+      onOk: () => {
+        mutateAsync(id);
+      },
+    });
+  };
+
   if (isError) {
     return (
       <h1 className='text-center text-3xl text-red-500 italic'>
@@ -100,7 +113,7 @@ export default function AdminPanel() {
                       <PencilSquareIcon className='h-[25px] px-1 cursor-pointer text-blue-400 hover:text-blue-500' />
                     </Link>
                     <TrashIcon
-                      onClick={async () => await mutateAsync(id)}
+                      onClick={() => handleDelete(id)}
                       className='h-[25px] px-1 cursor-pointer text-blue-400 hover:text-blue-500'
                     />
                   </div>
