@@ -10,6 +10,7 @@ import { private_axios } from 'utils/private_axios';
 import { TProduct } from 'types/TProducts';
 import { Button } from 'components/Button';
 import { useTranslation } from 'react-i18next';
+import { Image } from 'components/Image';
 
 export default function AdminPanel() {
   const queryClient = useQueryClient();
@@ -80,7 +81,7 @@ export default function AdminPanel() {
             ({ id, images, brand, title, price }: TProduct) => (
               <div key={id} className='flex justify-between py-2 '>
                 <div className='flex items-start gap-2'>
-                  <img src={images[0]} className='w-[100px]' />
+                  <Image src={images[0]} width='100px' />
                   <div>
                     <Link
                       to={`/products/product/${id}`}

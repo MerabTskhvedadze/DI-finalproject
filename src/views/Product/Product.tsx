@@ -66,9 +66,7 @@ export default function Product() {
       </div>
       <div>
         <h1 className='text-2xl mx-3 my-2 font-medium'>{t('related')}</h1>
-        <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
-          <Suggestions brand={data?.brand} />
-        </div>
+        <Suggestions brand={data?.brand} />
       </div>
     </div>
   );

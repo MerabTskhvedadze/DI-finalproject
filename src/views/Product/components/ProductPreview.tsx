@@ -1,10 +1,8 @@
-import { Image } from 'antd';
+import { Image } from 'components/Image';
 import { useState, useEffect } from 'react';
 
 export function ProductPreview({ images }: { images: string[] }) {
-  const [currentImage, setCurrentImage] = useState<string | undefined>(
-    undefined
-  );
+  const [currentImage, setCurrentImage] = useState<string>('');
 
   useEffect(() => {
     setCurrentImage(images[0]);

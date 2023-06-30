@@ -7,6 +7,7 @@ import bannerImgFour from 'assets/images/bannerImgFour.jpg';
 import bannerImgFive from 'assets/images/bannerImgFive.jpg';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { Image } from 'components/Image';
 
 export const Carousel = () => {
   return (
@@ -22,19 +23,19 @@ export const Carousel = () => {
         className='h-[58%]'
       >
         <SwiperSlide>
-          <img src={bannerImgOne} />
+          <Image src={bannerImgOne} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={bannerImgTwo} />
+          <Image src={bannerImgTwo} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={bannerImgThree} />
+          <Image src={bannerImgThree} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={bannerImgFour} />
+          <Image src={bannerImgFour} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={bannerImgFive} />
+          <Image src={bannerImgFive} />
         </SwiperSlide>
       </Swiper>
     </div>
