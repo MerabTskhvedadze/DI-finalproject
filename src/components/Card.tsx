@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useCart } from 'context/CartContext';
 import { TProduct } from 'types/TProducts';
-import { Image } from 'antd';
+// import { Image } from 'antd';
+import { Image } from './Image';
 
 type CardProps = {
   data: TProduct;
@@ -33,7 +34,7 @@ export const Card = ({ data }: CardProps) => {
           to={`/products/product/${data.id}`}
           className=' bg-white z-30 m-3 select-none'
         >
-          <Image src={data.images[0]} preview={false} alt={data.title} />
+          <Image src={data.images[0]} alt={data.title} />
         </Link>
         <ShoppingCartIcon
           onClick={handleAddToCart}

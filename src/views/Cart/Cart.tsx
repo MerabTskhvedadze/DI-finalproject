@@ -8,6 +8,7 @@ import {
   TrashIcon,
 } from '@heroicons/react/24/solid';
 import { CartButtons } from './components/CartButtons';
+import { Image } from 'components/Image';
 
 export default function Cart() {
   const { t } = useTranslation('cart');
@@ -40,7 +41,7 @@ export default function Cart() {
             cart.items.map(({ product, quantity }) => (
               <div key={product.id} className='flex justify-between py-2 '>
                 <div className='flex items-start gap-2'>
-                  <img src={product.images[0]} className='w-[100px]' />
+                  <Image src={product.images[0]} width='100px' />
                   <div>
                     <h1 className='font-medium'>{product.title}</h1>
                     <h2 className='font-medium text-gray-500'>
