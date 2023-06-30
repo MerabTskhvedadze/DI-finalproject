@@ -7,10 +7,13 @@ export default {
         amazon: {
           background: '#EAEDED',
           yellow: '#febd69',
+          light_blue: '#232F3A',
+          DEFAULT: '#131921',
         },
       },
       screens: {
         xs: '340px',
+        m: '770px',
       },
     },
   },

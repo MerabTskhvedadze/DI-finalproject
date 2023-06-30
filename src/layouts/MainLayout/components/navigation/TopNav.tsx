@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { TAuthorizationStage, useAuth } from 'context/AuthContext';
 import { TLocalStorage } from 'types/localstorage';
 
-import { ShoppingCart } from './components/ShoppingCart';
+import { ShoppingCart } from '../ShoppingCart';
 import { useSearch } from 'context/SearchContext';
-import { Search } from './components/Search';
-import { Auth } from './components/Auth';
+import { Auth } from '../Auth';
+import { Search } from '../Search';
 
 import amazonImg from 'assets/images/amazon.png';
 import { TUser_Roles, useAccessContext } from 'context/AccessContext';
@@ -26,11 +26,11 @@ export const TopNav = () => {
     <>
       {isSearching && (
         <div
-          className='fixed w-full h-full bg-gray-800 z-40 opacity-[0.5]'
+          className='fixed w-full h-full bg-amazon z-40 opacity-[0.5]'
           onMouseDown={() => changeSearchState(false)}
         />
       )}
-      <nav className='flex items-center bg-gray-800 text-white h-[60px]'>
+      <nav className='flex items-center bg-amazon text-white h-[60px]'>
         <Link to={'/'}>
           <img src={amazonImg} className='h-[35px] w-[100px] my-3 mx-4' />
         </Link>
