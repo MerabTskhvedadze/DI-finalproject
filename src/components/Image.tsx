@@ -6,14 +6,16 @@ type ImageProps = {
   alt?: string;
   height?: string;
   width?: string;
+  className?: string;
 };
 
-export const Image = ({ alt, height, src, width }: ImageProps) => (
+export const Image = ({ alt, height, src, width, className }: ImageProps) => (
   <LazyLoadImage
     src={src}
     alt={alt}
     height={height}
     width={width}
+    className={className}
     effect='blur'
   />
 );

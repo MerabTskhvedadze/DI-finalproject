@@ -8,5 +8,8 @@
   "settings": "Settings",
   "admin": "Admin panel",
   "productNotFound": "Products not found",
-  "search": "Search"
+  "search": "Search",
+  "georgian": "Georgian",
+  "english": "English",
+  "footerMsg": "2023 Amazon clone. All rights reserved."
 }

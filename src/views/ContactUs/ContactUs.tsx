@@ -5,7 +5,7 @@ export default function ContactUs() {
   const { t } = useTranslation('contact');
 
   return (
-    <div className='max-w-[600px] mx-auto border border-gray-300 p-5'>
+    <div className='max-w-[600px] mx-auto border border-gray-300 p-5 rounded-lg'>
       <h2 className='mb-6 text-4xl  tracking-tight font-extrabold text-center text-gray-700'>
         {t('contact')}
       </h2>

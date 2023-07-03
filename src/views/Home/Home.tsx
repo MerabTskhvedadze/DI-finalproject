@@ -1,11 +1,13 @@
+import { useCallback } from 'react';
 import { useQuery } from 'react-query';
+import { useSessionStorage } from 'usehooks-ts';
+import { Pagination } from 'antd';
+import { TProduct } from 'types/TProducts';
+import { public_axios } from 'utils/public_axios';
+
 import { Card } from 'components/Card';
 import { Carousel } from './components/Carousel';
-import { TProduct } from 'types/TProducts';
-import { useCallback } from 'react';
-import { Pagination } from 'antd';
-import { useSessionStorage } from 'usehooks-ts';
-import { public_axios } from 'utils/public_axios';
+import { ErrorModal } from 'components/ErrorModal';
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useSessionStorage('currentPageHome', 1);
@@ -25,11 +27,7 @@ export default function Home() {
   }, []);
 
   if (isError) {
-    return (
-      <h1 className='text-center text-3xl text-red-500 italic'>
-        Oops! something went wrong
-      </h1>
-    );
+    return <ErrorModal />;
   }
   return (
     <>

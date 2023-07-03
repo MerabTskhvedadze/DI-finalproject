@@ -9,6 +9,7 @@ import {
 } from '@heroicons/react/24/solid';
 import { CartButtons } from './components/CartButtons';
 import { Image } from 'components/Image';
+import { Empty } from 'antd';
 
 export default function Cart() {
   const { t } = useTranslation('cart');
@@ -34,9 +35,9 @@ export default function Cart() {
             <CartButtons />
           </div>
           {cart.items.length === 0 ? (
-            <h1 className='text-center text-3xl text-red-500 italic'>
-              {t('empty')}
-            </h1>
+            <div className='h-screen flex items-center justify-center'>
+              <Empty description={t('empty')} />
+            </div>
           ) : (
             cart.items.map(({ product, quantity }) => (
               <div key={product.id} className='flex justify-between py-2 '>

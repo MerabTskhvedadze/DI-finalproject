@@ -18,13 +18,12 @@ export const ChangeDetails = () => {
   });
 
   return (
-    <div className='bg-white overflow-hidden shadow rounded-lg border p-4'>
+    <div className='border-gray-300 overflow-hidden shadow rounded-lg border p-4'>
       <h1 className='mb-5 text-sm sm:text-lg font-bold text-gray-700 tracking-wider'>
         {t('changeDetailsTitle')}
       </h1>
       <Form name='registrationForm' onFinish={(values) => mutate(values)}>
         <Form.Item
-          label={t('firstName')}
           name='firstName'
           rules={[
             {
@@ -33,10 +32,9 @@ export const ChangeDetails = () => {
             },
           ]}
         >
-          <Input />
+          <Input placeholder={t('firstName')} />
         </Form.Item>
         <Form.Item
-          label={t('lastName')}
           name='lastName'
           rules={[
             {
@@ -45,10 +43,9 @@ export const ChangeDetails = () => {
             },
           ]}
         >
-          <Input />
+          <Input placeholder={t('lastName')} />
         </Form.Item>
         <Form.Item
-          label={t('phoneNumber')}
           name='phoneNumber'
           rules={[
             { required: true, message: t('requiredPhoneNumber') },
@@ -58,10 +55,9 @@ export const ChangeDetails = () => {
             },
           ]}
         >
-          <Input />
+          <Input placeholder={t('phoneNumber')} />
         </Form.Item>
         <Form.Item
-          label={t('emailAddress')}
           name='email'
           rules={[
             {
@@ -74,7 +70,7 @@ export const ChangeDetails = () => {
             },
           ]}
         >
-          <Input />
+          <Input placeholder={t('emailAddress')} />
         </Form.Item>
         <Form.Item>
           <Button type='submit'>{t('saveChanges')}</Button>
