@@ -19,34 +19,31 @@ export default function LogIn() {
   const { setStatus } = useAuth();
   const { setCurrentRole } = useAccessContext();
 
-  const { mutate } = useMutation(
-    async (values: FormValues) => {
+  const { mutate } = useMutation(async (values: FormValues) => {
+    try {
       const response = await public_axios.post('/login', values);
-      return response?.data;
-    },
-    {
-      onSuccess: (data: any) => {
-        if (data.AccessToken) {
-          localStorage.setItem(TLocalStorage.ACCESSTOKEN, data.AccessToken);
-          setStatus(TAuthorizationStage.AUTHORIZED);
+      if (response.data.AccessToken) {
+        localStorage.setItem(
+          TLocalStorage.ACCESSTOKEN,
+          response.data.AccessToken
+        );
+        setStatus(TAuthorizationStage.AUTHORIZED);
 
-          const { isAdmin }: { isAdmin: boolean } = jwt_decode(
-            data.AccessToken
-          );
-          if (isAdmin) {
-            setCurrentRole(TUser_Roles.ADMIN);
-          } else {
-            setCurrentRole(TUser_Roles.USER);
-          }
+        const { isAdmin }: { isAdmin: boolean } = jwt_decode(
+          response.data.AccessToken
+        );
+        if (isAdmin) {
+          setCurrentRole(TUser_Roles.ADMIN);
+        } else {
+          setCurrentRole(TUser_Roles.USER);
         }
-        message.success(`${t('wellcome')}`);
-        navigate('/');
-      },
-      onError: () => {
-        message.error(`${t('error')}`);
-      },
+      }
+      message.success(`${t('wellcome')}`);
+      navigate('/');
+    } catch (error: any) {
+      message.error(`${t('error')}`);
     }
-  );
+  });
 
   const login = (values: FormValues) => {
     mutate(values);

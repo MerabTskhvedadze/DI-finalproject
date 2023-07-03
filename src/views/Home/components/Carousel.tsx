@@ -11,7 +11,7 @@ import { Image } from 'components/Image';
 
 export const Carousel = () => {
   return (
-    <div className='h-[600px] w-[700px] sm:w-[800px] md:w-[1020px] lg:w-[1500px] mx-auto'>
+    <div className='h-[600px] w-[800px] md:w-[1020px] lg:w-[1500px] mx-auto'>
       <Swiper
         loop={true}
         spaceBetween={0}

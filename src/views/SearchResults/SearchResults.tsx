@@ -1,18 +1,19 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { animateScroll } from 'react-scroll';
 import { useQuery } from 'react-query';
 import { useTranslation } from 'react-i18next';
-import { Pagination } from 'antd';
+import { Empty, Pagination } from 'antd';
+import { useSessionStorage } from 'usehooks-ts';
 
 import { public_axios } from 'utils/public_axios';
 import { TProduct } from 'types/TProducts';
-import { Card } from 'components/Card';
 import { Breadcrumb } from 'components/Breadcrumb';
+import { ErrorModal } from 'components/ErrorModal';
+import { Card } from 'components/Card';
 
 export default function SearchResults() {
   const { t } = useTranslation('searchresults');
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useSessionStorage('searchResultsPage', 1);
   const itemsPerPage = 20;
   const skip = (page - 1) * itemsPerPage;
   const { keyword } = useParams();
@@ -43,10 +44,12 @@ export default function SearchResults() {
   ];
 
   if (isError) {
+    return <ErrorModal />;
+  } else if (data.products.length <= 0) {
     return (
-      <h1 className='text-center text-3xl text-red-500 italic'>
-        Oops! something went wrong
-      </h1>
+      <div className='flex items-center justify-center h-screen'>
+        <Empty description={t('message')} />
+      </div>
     );
   }
   return (

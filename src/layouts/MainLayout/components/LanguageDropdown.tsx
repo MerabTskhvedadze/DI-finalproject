@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
 export const LanguageDropdown = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation('main');
   const [selectedLanguage, setSelectedLanguage] = useState(i18next.language);
 
   const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -29,10 +29,10 @@ export const LanguageDropdown = () => {
             onClick={() => i18n.changeLanguage('en')}
             className=' text-black'
           >
-            English
+            {t('english')}
           </option>
           <option value='ka' className=' text-black'>
-            Georgian
+            {t('georgian')}
           </option>
         </select>
         <div className='absolute inset-y-0 right-0 flex items-center justify-center w-10 h-full pointer-events-none'>

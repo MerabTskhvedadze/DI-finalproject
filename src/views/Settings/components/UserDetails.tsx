@@ -1,23 +1,25 @@
 import { useTranslation } from 'react-i18next';
 import { private_axios } from 'utils/private_axios';
 import { useQuery } from 'react-query';
-import { message } from 'antd';
+
+import { ErrorModal } from 'components/ErrorModal';
 
 export const UserDetails = () => {
   const { t } = useTranslation('settings');
-  const { data } = useQuery(
-    'profile',
-    async () => {
+  const { data, error } = useQuery('profile', async () => {
+    try {
       const response = await private_axios.get('/me');
       return response?.data;
-    },
-    {
-      onError: (error: any) => message.error(error?.message),
+    } catch (error: any) {
+      throw error;
     }
-  );
+  });
 
+  if (error) {
+    return <ErrorModal />;
+  }
   return (
-    <div className='bg-white overflow-hidden shadow rounded-lg border'>
+    <div className='border-gray-300 overflow-hidden shadow rounded-lg border'>
       <div className='border-t border-gray-200 px-4 py-5 sm:p-0'>
         <dl className='sm:divide-y sm:divide-gray-200'>
           <div className='py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>

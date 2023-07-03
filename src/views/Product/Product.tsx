@@ -8,6 +8,7 @@ import { public_axios } from 'utils/public_axios';
 import { useCart } from 'context/CartContext';
 import { Breadcrumb } from 'components/Breadcrumb';
 import { Button } from 'components/Button';
+import { ErrorModal } from 'components/ErrorModal';
 import { ProductPreview, ProductDetails, Suggestions } from './components';
 
 export default function Product() {
@@ -38,11 +39,7 @@ export default function Product() {
   }, [id]);
 
   if (isError) {
-    return (
-      <h1 className='text-center text-3xl text-red-500 italic'>
-        Oops! something went wrong
-      </h1>
-    );
+    return <ErrorModal />;
   }
   return (
     <div className='min-h-screen'>

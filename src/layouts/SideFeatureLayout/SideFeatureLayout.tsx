@@ -1,5 +1,7 @@
 import { Outlet } from 'react-router-dom';
-import { Container, Header, Footer } from './components';
+
+import { Footer } from '../components/Footer';
+import { Container, Header } from './components';
 
 export const SideFeatureLayout = () => {
   return (

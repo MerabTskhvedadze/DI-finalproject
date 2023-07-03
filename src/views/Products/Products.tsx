@@ -2,14 +2,15 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { useTranslation } from 'react-i18next';
 import { animateScroll } from 'react-scroll';
+import { useSessionStorage } from 'usehooks-ts';
 import { Pagination, Select } from 'antd';
 
+import { ErrorModal } from 'components/ErrorModal';
 import { Card } from 'components/Card';
 import { Breadcrumb } from 'components/Breadcrumb';
 import { TProduct } from 'types/TProducts';
 import { public_axios } from 'utils/public_axios';
 import { filteredOptions } from './utils/selectHelper';
-import { useSessionStorage } from 'usehooks-ts';
 
 export default function Products() {
   const { t } = useTranslation('products');
@@ -47,19 +48,14 @@ export default function Products() {
     { text: t('products') },
   ];
 
-  if (isError) {
-    return (
-      <h1 className='text-center text-3xl text-red-500 italic'>
-        Oops! something went wrong
-      </h1>
-    );
-  }
-
   const handleBrandChange = (value: string) => {
     setBrandName(value);
     setCurrentPage(1);
   };
 
+  if (isError) {
+    return <ErrorModal />;
+  }
   return (
     <>
       <div className='flex justify-between items-center'>

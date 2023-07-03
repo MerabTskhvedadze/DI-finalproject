@@ -11,20 +11,15 @@ export default function Registration() {
   const navigate = useNavigate();
   const { t } = useTranslation('register');
 
-  const { mutate } = useMutation(
-    async (values: FormValues) => {
+  const { mutate } = useMutation(async (values: FormValues) => {
+    try {
       await public_axios.post('/register', values);
-    },
-    {
-      onSuccess: () => {
-        navigate('/login');
-        message.success('Registration was successful');
-      },
-      onError: (error: any) => {
-        message.error(error.response.data);
-      },
+      navigate('/login');
+      message.success('Registration was successful');
+    } catch (error: any) {
+      message.error(error?.response?.data);
     }
-  );
+  });
 
   const register = (values: FormValues) => {
     mutate(values);

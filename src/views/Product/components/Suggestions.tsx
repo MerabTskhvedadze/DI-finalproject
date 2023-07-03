@@ -22,7 +22,6 @@ export const Suggestions = ({ brand }: { brand: string }) => {
       suspense: false,
     }
   );
-  console.log(data);
 
   if (isError) {
     return (
